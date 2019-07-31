@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/img/logo.png"></p>
+<p align="center"><img src="public/assets/img/logo.png" width="100px"></p>
 
 ## About Intranet
 
