@@ -8,12 +8,8 @@ use App\Event;
 
 class EventController extends Controller
 {
-<<<<<<< HEAD
-    public function index(){
-=======
     public function index()
     {
->>>>>>> add calender and button
         $events = [];
         $data = Event::all();
         if($data->count()) {
@@ -33,13 +29,9 @@ class EventController extends Controller
             }
         }
         $calendar = Calendar::addEvents($events);
-<<<<<<< HEAD
-        return view('fullcalender', compact('calendar'));
-=======
         return view('cooporatecalender', compact('calendar'));
     }
     public function add(){
         return view('addCooporateCalender');
->>>>>>> add calender and button
     }
 }

@@ -134,6 +134,72 @@
                 </div>
             <!-- end formulir -->
         </div><!-- end row -->
+
+        <div class="row">
+          <!-- upcoming cooporate events -->
+          <div class="col-xl-6 col-md-12 mb-4 mt-2">
+            <div class="card shadow">
+              <div class="card-header">
+                <h6>Upcoming Cooporate Events</h6>
+              </div>
+              <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama Acara</th>
+                    <th scope="col">Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Peresmian gedung bwa baru</td>
+                    <td>12-ags-2019</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Training Leadership</td>
+                    <td>14-ags-2019</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div> <!-- end upcoming event cooporate -->
+          <!-- upcoming cooporate events -->
+          <div class="col-xl-6 col-md-12 mb-4 mt-2">
+            <div class="card shadow">
+              <div class="card-header">
+                <h6>Upcoming Personal Events</h6>
+              </div>
+              <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama Acara</th>
+                    <th scope="col">Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Sunatan</td>
+                    <td>12-ags-2019</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Nikahan</td>
+                    <td>12-juni-2020</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div> <!-- end upcoming event cooporate -->
+
+        </div>
        
 
      @endsection('konten')
