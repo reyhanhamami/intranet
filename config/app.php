@@ -163,7 +163,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+<<<<<<< HEAD
         
+=======
+>>>>>>> add calender and button
         /*
          * Package Service Providers...
          */

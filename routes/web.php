@@ -14,4 +14,11 @@
 Route::get('/', function () {
     return view('index');
 });
+<<<<<<< HEAD
 Route::get('events', 'EventController@index');
+=======
+Route::get('/cooporatecalender', 'EventController@index');
+Route::get('/addcooporatecalender', 'EventController@add');
+Route::get('/editcooporatecalender', 'EventController@edit');
+Route::get('/deletecooporatecalender', 'EventController@delete');
+>>>>>>> add calender and button
