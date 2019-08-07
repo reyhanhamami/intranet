@@ -14,7 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/cooporatecalender', 'EventController@index');
-Route::get('/addcooporatecalender', 'EventController@add');
-Route::get('/editcooporatecalender', 'EventController@edit');
-Route::get('/deletecooporatecalender', 'EventController@delete');
+Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender');
+Route::get('/events/addcooporatecalender', 'EventController@add')->name('events.addcooporatecalender');
+Route::post('/events/addcooporatecalender', 'EventController@store')->name('events.storecooporatecalender');
+Route::get('/events/editcooporatecalender', 'EventController@edit');
+Route::get('/events/deletecooporatecalender', 'EventController@delete');

@@ -20,21 +20,21 @@
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="assets/img/2-min.jpg" class="d-block w-100" alt="Gambar Rusak" height="400px">
+                  <img src="assets/img/2-min.jpg" class="d-block w-100 full-image " alt="Gambar Rusak" height="400px">
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/img/5-min.jpg" class="d-block w-100" alt="Gambar Rusak" height="400px">
+                  <img src="assets/img/5-min.jpg" class="d-block w-100 full-image" alt="Gambar Rusak" height="400px">
                   <div class="carousel-caption  font-weight-bold black d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/img/breakingnews.jpg" class="d-block w-100" alt="Gambar Rusak" height="400px">
+                  <img src="assets/img/breakingnews.jpg" class="d-block w-100 full-image" alt="Gambar Rusak" height="400px">
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

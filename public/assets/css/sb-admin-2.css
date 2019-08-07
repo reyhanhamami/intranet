@@ -71,6 +71,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   color: #1b5f5f !important;
 }
 
+.full-image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+}
+
 body {
   margin: 0;
   font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

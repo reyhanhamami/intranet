@@ -22,16 +22,25 @@ class EventController extends Controller
                     null,
                     // Add color and link on event
 	                [
-	                    'color' => '#f05050',
-	                    'url' => 'pass here url and any route',
+	                    // 'color' => 'color',
+	                    // 'url' => 'pass here url and any route',
 	                ]
                 );
             }
         }
         $calendar = Calendar::addEvents($events);
-        return view('cooporatecalender', compact('calendar'));
+        return view('events.cooporatecalender', compact('calendar'));
     }
     public function add(){
-        return view('addCooporateCalender');
+        return view('events.addcooporatecalender');
+    }
+    public function store(){
+        Event::create([
+            'title' => request('title'),
+            'color' => request('color'),
+            'start_date' => request('start_date'),
+            'end_date' => request('end_date'),
+        ]);
+        return redirect()->route('events.cooporatecalender')->with('success', 'Events Added');
     }
 }

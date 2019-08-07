@@ -12,12 +12,12 @@
   <title>@yield('title')</title>
 
   <!-- Custom fonts for this template-->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="{{ url('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}" rel="stylesheet">
   <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+  <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css') }}"/>
   <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="{{ url('assets/css/sb-admin-2.css') }}" rel="stylesheet">
   <!-- css full calender -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 </head>
@@ -91,7 +91,7 @@
     <div id="collapseCal" class="collapse">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Calender :</h6>
-        <a href="/cooporatecalender" class="collapse-item">Calender Cooporate</a>
+        <a href="{{ route('events.cooporatecalender') }}" class="collapse-item">Calender Cooporate</a>
         <a href="#" class="collapse-item">Calender Personal</a>
       </div>
     </div>
@@ -367,32 +367,24 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url('assets/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{{ url('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="assets/js/sb-admin-2.min.js"></script>
+  <script src="{{ url('assets/js/sb-admin-2.min.js') }}"></script>
 
   <!-- Page level plugins -->
-  <script src="assets/vendor/chart.js/Chart.min.js"></script>
+  <script src="{{ url('assets/vendor/chart.js/Chart.min.js') }}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="assets/js/demo/chart-area-demo.js"></script>
-  <script src="assets/js/demo/chart-pie-demo.js"></script>
-<<<<<<< HEAD
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-  @yield('scriptexternal')
-=======
-
-  <!-- script full calender -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+  <script src="{{ url('assets/js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url('assets/js/demo/chart-pie-demo.js') }}"></script>
+  <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js') }}"></script>
+  <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js') }}"></script>
   @yield('scriptExternal')
->>>>>>> add calender and button
 </body>
 
 </html>
