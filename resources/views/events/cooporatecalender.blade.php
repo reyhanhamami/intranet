@@ -11,8 +11,8 @@
         <div class="col-md-8 col-md-offset-2">
             <div class=" mt-4">
             <a href="{{ route('events.addcooporatecalender') }}" class="btn btn-primary mb-2">Tambah Acara</a>
-            <a href="/editCooporateCalender" class="btn btn-secondary mb-2">Edit Acara</a>
-            <a href="/DeleteCooporateCalender" class="btn btn-danger mb-2">Hapus Acara</a>
+            <a href="{{ route('events.editcooporatecalender') }}" class="btn btn-warning mb-2">Edit / Delete Acara</a>
+            <!-- <a href="/DeleteCooporateCalender" class="btn btn-danger mb-2">Hapus Acara</a> -->
             <div class="panel panel-default">
                 <div class="panel-heading">Full Calendar Example</div>
                 <div class="panel-body">

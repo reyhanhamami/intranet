@@ -58,6 +58,11 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
+/* kustom css */
+.overflow{
+  height: 400px;
+  overflow: hidden;
+}
 .tombolform{
   background: #1e9494;
   margin-bottom:2px;
