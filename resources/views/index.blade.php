@@ -20,21 +20,27 @@
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="assets/img/2-min.jpg" class="d-block w-100 full-image " alt="Gambar Rusak" height="400px">
+                <div class="overflow">
+                  <img src="assets/img/2-min.jpg" class="d-block w-100 full-image " alt="Gambar Rusak">
+                </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/img/5-min.jpg" class="d-block w-100 full-image" alt="Gambar Rusak" height="400px">
+                <div class="overflow">
+                  <img src="assets/img/5-min.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                </div>
                   <div class="carousel-caption  font-weight-bold black d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/img/breakingnews.jpg" class="d-block w-100 full-image" alt="Gambar Rusak" height="400px">
+                <div class="overflow">
+                  <img src="assets/img/breakingnews.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>
                     <p style="background:white;opacity:0.5;border-radius:5px;">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -152,22 +158,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Peresmian gedung bwa baru</td>
-                    <td>12-ags-2019</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Training Leadership</td>
-                    <td>14-ags-2019</td>
-                  </tr>
+                  @foreach ($events as $event)
+                    <tr>
+                      <th scope="row">{{$loop->iteration}}</th>
+                      <td>{{$event->title}}</td>
+                      <td>{{date('D d-M-Y', strtotime($event->start_date))}}</td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
               </div>
             </div>
           </div> <!-- end upcoming event cooporate -->
-          <!-- upcoming cooporate events -->
+          <!-- upcoming events personal-->
           <div class="col-xl-6 col-md-12 mb-4 mt-2">
             <div class="card shadow">
               <div class="card-header">
@@ -183,21 +186,18 @@
                   </tr>
                 </thead>
                 <tbody>
+                @foreach ($events as $event)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Sunatan</td>
-                    <td>12-ags-2019</td>
+                    <th scope="row">{{$loop->iteration}}</th>
+                    <td>{{$event->title}}</td>
+                    <td>{{$event->start_date}}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Nikahan</td>
-                    <td>12-juni-2020</td>
-                  </tr>
+                @endforeach
                 </tbody>
               </table>
               </div>
             </div>
-          </div> <!-- end upcoming event cooporate -->
+          </div> <!-- end upcoming event personal -->
 
         </div>
        
