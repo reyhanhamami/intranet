@@ -21,7 +21,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                 <div class="overflow">
-                  <img src="assets/img/2-min.jpg" class="d-block w-100 full-image " alt="Gambar Rusak">
+                  <img src="assets/img/badan.jpg" class="d-block w-100 full-image " alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="carousel-item">
                 <div class="overflow">
-                  <img src="assets/img/5-min.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                  <img src="assets/img/3.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption  font-weight-bold black d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="carousel-item">
                 <div class="overflow">
-                  <img src="assets/img/breakingnews.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                  <img src="assets/img/kantor-yayasan-badan-wakaf-tebet.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>
@@ -122,17 +122,26 @@
                         <i class="fas fa-fw fa-chevron-circle-right text-cyan"></i>
                     </a>
                     </div>
-                    <div class="mx-auto">
+                    <div class="">
                       <div id="MyFormulir" class="collapse">
                         <div class="collapse-inner">
-                          <h6 class="collapse-header mt-3">form-form:</h6>
-                            <div class="text-white tombolform">Form lembur</div>
+                          <h6 class="collapse-header ml-4 mt-3">formulir :</h6>
+                          <ul class="list-group">
+                            <a href="#" class="list-group-item btn tombolform">Form lembur</a>
+                            <a href="#" class="list-group-item btn tombolform">Form cuti</a>
+                            <a href="#" class="list-group-item btn tombolform">Form izin</a>
+                            <a href="#" class="list-group-item btn tombolform">Form pinjaman</a>
+                            <a href="#" class="list-group-item btn tombolform">Form rembest</a>
+                            <a href="#" class="list-group-item btn tombolform">Form perjalanan dinas</a>
+                            <a href="#" class="list-group-item btn tombolform">Form permintaan barang</a>
+                          </ul>
+                            <!-- <div class="text-white tombolform">Form lembur</div>
                             <div class="text-white tombolform">Form cuti</div>
                             <div class="text-white tombolform">Form izin</div>
                             <div class="text-white tombolform">Form pinjaman</div>
                             <div class="text-white tombolform">Form rembest</div>
                             <div class="text-white tombolform">Form perjalanan dinas</div>
-                            <div class="text-white tombolform mb-3">Form permintaan barang</div>
+                            <div class="text-white tombolform mb-3">Form permintaan barang</div> -->
                         </div>
                       </div>
                     </div>

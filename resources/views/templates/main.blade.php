@@ -77,7 +77,7 @@
 
   <!-- Nav Item - job request -->
   <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{ route('jobrequest.index')}}">
       <i class="fas fa-fw fa-people-carry"></i>
       <span>Job Request</span></a>
   </li>
@@ -99,7 +99,7 @@
 
   <!-- employee list -->
   <li class="nav-item">
-    <a href="#" class="nav-link collapsed">
+    <a href="{{ route('listemployee.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-user-friends"></i>
       <span>List Employee</span>
     </a>
@@ -107,7 +107,7 @@
 
   <!-- artikel -->
   <li class="nav-item">
-    <a href="#" class="nav-link collapsed">
+    <a href="{{ route('artikel.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-newspaper"></i>
       <span>Artikel</span>
     </a>
@@ -115,7 +115,7 @@
 
   <!-- Document management -->
   <li class="nav-item">
-    <a href="#" class="nav-link collapsed">
+    <a href="{{ route('wiki.index')}}" class="nav-link collapsed">
       <i class="fab fa-fw fa-wikipedia-w"></i>
       <span>wiki</span>
     </a>
@@ -123,7 +123,7 @@
 
   <!-- Diskusi -->
   <li class="nav-item">
-    <a href="#" class="collapsed nav-link">
+    <a href="{{ route('forum.index')}}" class="collapsed nav-link">
       <i class="fab fa-fw fa-discourse"></i>
       <span>Forum Diskusi</span>
     </a>
@@ -131,7 +131,7 @@
 
   <!-- Tasks -->
   <li class="nav-item">
-    <a href="#" class="collapsed nav-link">
+    <a href="{{route('tasks.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-tasks"></i>
       <span>Tasks</span>
     </a>
@@ -139,7 +139,7 @@
 
   <!-- project -->
   <li class="nav-item">
-    <a href="#" class="nav-link collapsed">
+    <a href="{{route('projects.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-project-diagram"></i>
       <span>Projects</span>
     </a>
@@ -147,7 +147,7 @@
 
   <!-- polling -->
   <li class="nav-item">
-    <a href="#" class="collapsed nav-link">
+    <a href="{{route('polling.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-spinner"></i>
       <span>Polling</span>
     </a>
@@ -155,7 +155,7 @@
 
   <!-- education -->
   <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{route('education.index')}}" class="nav-link">
       <i class="fas fa-fw fa-book-open"></i>
       <span>Education</span>
     </a>
