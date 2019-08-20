@@ -21,7 +21,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                 <div class="overflow">
-                  <img src="assets/img/badan.jpg" class="d-block w-100 full-image " alt="Gambar Rusak">
+                  <img src="public/assets/img/badan.jpg" class="d-block w-100 full-image " alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="carousel-item">
                 <div class="overflow">
-                  <img src="assets/img/3.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                  <img src="public/assets/img/3.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption  font-weight-bold black d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="carousel-item">
                 <div class="overflow">
-                  <img src="assets/img/kantor-yayasan-badan-wakaf-tebet.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
+                  <img src="public/assets/img/kantor-yayasan-badan-wakaf-tebet.jpg" class="d-block w-100 full-image" alt="Gambar Rusak">
                 </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
                     <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>

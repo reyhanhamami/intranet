@@ -14,6 +14,12 @@
 // Route::get('/', function () {
 //     return view('index');
 // });
+
+// route untuk login 
+Route::get('/administrator/login', function (){
+    return view('administrator/login');
+});
+
 // route untuk home dashboard
 Route::get('/', 'HomeController@index')->name('dashboard');
 
