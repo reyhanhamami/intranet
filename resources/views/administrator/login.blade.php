@@ -39,7 +39,8 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">أهلا و سهل!ا</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" method="post" action="{{ route('login')}}">
+                  {{ csrf_field() }}
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
                     </div>
