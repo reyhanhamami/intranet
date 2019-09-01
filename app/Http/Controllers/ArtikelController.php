@@ -14,6 +14,7 @@ class ArtikelController extends Controller
      */
     public function index()
     {
+        // $halaman = 'artikel';
         return view('artikel.artikelindex');
     }
 

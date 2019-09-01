@@ -9,6 +9,7 @@ use App\Event;
 class HomeController extends Controller
 {
     public function index(){
+        // $halaman = 'home';
         $events = Event::get();
         return view('index', compact('events'));
     }

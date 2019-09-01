@@ -22,6 +22,7 @@ Route::get('/administrator/login', function (){
 
 // route untuk home dashboard
 Route::get('/', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index')->name('dashboard');
 
 // route untuk calender cooporate
 Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender');

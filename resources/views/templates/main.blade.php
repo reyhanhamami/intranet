@@ -40,8 +40,8 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="/">
+      <li <?php if ($halaman == 'home') {echo 'class="nav-item active"';} else {echo 'class="nav-item"';}?>>
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -76,14 +76,14 @@
   </li>
 
   <!-- Nav Item - job request -->
-  <li class="nav-item">
+  <li @if($halaman == 'jobrequest') echo class="active nav-item" @else echo class=" nav-item" @endif>
     <a class="nav-link" href="{{ route('jobrequest.index')}}">
       <i class="fas fa-fw fa-people-carry"></i>
       <span>Job Request</span></a>
   </li>
 
   <!-- nav item - calender -->
-  <li class="nav-item">
+  <li @if($halaman == 'events') echo class="nav-item active" @else echo class='nav-item' @endif>
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCal" aria-expanded="true" aria-controls="collapseCal">
       <i class="fas fa-fw fa-calendar-check"></i>
       <span>Calendar</span>
@@ -98,7 +98,7 @@
   </li>
 
   <!-- employee list -->
-  <li class="nav-item">
+  <li @if($halaman == 'listemployee') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{ route('listemployee.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-user-friends"></i>
       <span>List Employee</span>
@@ -106,7 +106,7 @@
   </li>
 
   <!-- artikel -->
-  <li class="nav-item">
+  <li <?php if($halaman == 'artikel'){echo 'class="nav-item active"';}else{echo 'class="nav-item"';} ?> class="nav-item">
     <a href="{{ route('artikel.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-newspaper"></i>
       <span>Artikel</span>
@@ -114,7 +114,7 @@
   </li>
 
   <!-- Document management -->
-  <li class="nav-item">
+  <li @if($halaman == 'wiki') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{ route('wiki.index')}}" class="nav-link collapsed">
       <i class="fab fa-fw fa-wikipedia-w"></i>
       <span>wiki</span>
@@ -122,7 +122,7 @@
   </li>
 
   <!-- Diskusi -->
-  <li class="nav-item">
+  <li @if($halaman == 'forumdiskusi') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{ route('forum.index')}}" class="collapsed nav-link">
       <i class="fab fa-fw fa-discourse"></i>
       <span>Forum Diskusi</span>
@@ -130,7 +130,7 @@
   </li>
 
   <!-- Tasks -->
-  <li class="nav-item">
+  <li @if($halaman == 'tasks') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{route('tasks.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-tasks"></i>
       <span>Tasks</span>
@@ -138,7 +138,7 @@
   </li>
 
   <!-- project -->
-  <li class="nav-item">
+  <li @if($halaman == 'projects') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{route('projects.index')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-project-diagram"></i>
       <span>Projects</span>
@@ -146,7 +146,7 @@
   </li>
 
   <!-- polling -->
-  <li class="nav-item">
+  <li @if($halaman == 'polling') echo class='active nav-item' @else echo class="nav-item" @endif>
     <a href="{{route('polling.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-spinner"></i>
       <span>Polling</span>
@@ -154,7 +154,7 @@
   </li>
 
   <!-- education -->
-  <li class="nav-item">
+  <li @if($halaman == 'education') echo class='active nav-item' @else echo class="nav-item" @endif>
     <a href="{{route('education.index')}}" class="nav-link">
       <i class="fas fa-fw fa-book-open"></i>
       <span>Education</span>
