@@ -281,7 +281,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">IT - BWA</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hi {{ Auth::user()->name}}</span>
                 <img class="img-profile rounded-circle" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMVFRUVFRUXFxcXFxoYFRcVFRUXFxcXFxgdHSggHR0lHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NGg8PGisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAQMAwgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAABAAIEBwMG/8QAMRABAQEAAQEFBgMIAwAAAAAAAAER8AIDITFB0RRTYXGBklGR8QQSEzKhscHhBxVz/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDxTSyQWnVACSIKVarFASlIA6tCA2jVEC1SjCB1aLQBtWpANOjEB0akBCAFJQCkgSSArFFgELFgLQcQJJAkUAwNCghStAAgEsMQLAvogKBBJICsRgDEVAUSICQ/mlzyBKpZzlBJLAAsKwAliwEhqBAgECAaxYSAhnOalOc0DqSnOaCw4DnPEFixZ8P6KwEliBRYec7gAWNYgFZbxmgEQAxWNAGcTQBfu870M+H9P9oDIcBBJEFGsUi5zuBKc53o4Ak5yd/5KFAOc7znMXOd5/Ln1AaiMBZz/eLFFnP0AKxL8ufUAjQA55LDowBRSAG/Ln0BxASkBkajJ55Ac5i54A4BxDOc9GgENo1c5AOnAcAYc53EAFJz0ViBUQ0AMWEArGWqKDNWHAAR35/0QFQ4gVSMA4sRkBSNSGf25zQADSzncC5yVGdPPBUBzzSqwBnO8WY1Is5oMEyK8/XwBnnmlQBFMgsAM1rqrIJJA0pAZAUJ5zvMgLEd5/nv1m35f3Bqqc8VOc8TzzBNbz9RFgFq/wB+fVjW+igzefqpTec7mYCxX6qDAU5zvLNPTeev4gzUepkDo6rzmBWAMDQs5ygznORNc53EGcMSAtVkwE1isPTQU3nKkQWc56nnmy1gAy88TvzZoNT6qfH/ACOm89PQ/Ln0BWM1q1mgOco3niZzyHUC5yIQ0BYy1rNAaokC3nchqAxRmEGpTKzOkg1Jz9DghlA3nNEMFAnBDgGiRLQVRgoKoWrQXOd6znKorQZqI6gCotFBWhYsBb8kNQFQStAmpWYdBKVQg2GYQLUrK0Gjg0Sgb9FRoAiM61AOqpnQVFQBCjWtAUaaKC35obzuQAgwGpUMIEysw6DVUolQNDVKNBWEfvDQah1nUCSQCqwgClKKABZ0EtWIFzxSQMmVSq0DqEQNIHQMp5zuZIHnPJDVoFDDYBGA6CWrVoLRUKBGg6CC1aCFqoA6mUCOpAjAZQKGnQVqi06CWhaBhZ1AdW85Vq0FKggKwUAYKloCooBoIAJrnn6IAQgKCA6dBBIIGgtGgSEBCWgVo1aB0VACEtBJIEEgXPMJAiEBSiAoVAUEBQWgYtB0FqSBIGAlor6dj2HX1/ydPV1Z4/uy3PngMaHT7B23uu0+zq9F7B23uu0+zq9AcydPsHbe67T7Or0H/X9t7rtPs6vQHOHT7B23uu0+zq9D7B23uu0+zq9AcqdPsHbe67T7OoA+PTDYECw4kC6ukJAc7lIkBvSz1TvxIFhkSAyDEgXTFgQN9XS9D/416Jf2ftf/AG8rZf5OjznekD9f/Cnx+6+o/gz4/nfl+KQjPs/T8fuvl9TP2fpnhv3dXn9UgU/Z+n4+GfzXwvf+K/gdPx/O+Xd+KQraSB//2Q==">
               </a>
               <!-- Dropdown - User Information -->
@@ -360,7 +360,7 @@
         <div class="modal-body">jangan lupa klik tombol "Logout" ya kalau mau keluar, Have a nice day ^^</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{route('login')}}">Logout</a>
+          <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
         </div>
       </div>
     </div>

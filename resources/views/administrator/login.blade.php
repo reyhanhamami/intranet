@@ -42,10 +42,10 @@
                   <form class="user" method="post" action="{{ route('login')}}">
                   {{ csrf_field() }}
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
+                      <input type="text" class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autofocus required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -53,9 +53,10 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="{{route('dashboard')}}" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-user btn-primary btn-block">Login</button>
+                    <!-- <a href="{{route('dashboard')}}" class="btn btn-primary btn-user btn-block">
                       Login
-                    </a>
+                    </a> -->
                     <hr>
                     <a href="{{route('dashboard')}}" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
