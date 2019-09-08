@@ -155,22 +155,22 @@
           <div class="col-xl-6 col-md-12 mb-4 mt-2">
             <div class="card shadow">
               <div class="card-header">
-                <h6>Upcoming Cooporate Events</h6>
+                <h6><i class="fas fa-sun"></i> Upcoming Cooporate Events </h6>
               </div>
               <div class="card-body">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Acara</th>
-                    <th scope="col">Tanggal</th>
+                    <th scope="col"><i class="fas fa-sort-numeric-down"></i></th>
+                    <th scope="col"><i class="fas fa-building"></i> Nama Acara</th>
+                    <th scope="col"><i class="fas fa-calendar-alt"></i> Tanggal</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($events as $event)
                     <tr>
                       <th scope="row">{{$loop->iteration}}</th>
-                      <td>{{$event->title}}</td>
+                      <td><i class="fas fa-bullhorn"></i> {{$event->title}} </td>
                       <td>{{date('D d-M-Y', strtotime($event->start_date))}}</td>
                     </tr>
                   @endforeach
@@ -183,22 +183,22 @@
           <div class="col-xl-6 col-md-12 mb-4 mt-2">
             <div class="card shadow">
               <div class="card-header">
-                <h6>Upcoming Personal Events</h6>
+                <h6><i class="fas fa-star-and-crescent"> </i> Upcoming Personal Events</h6>
               </div>
               <div class="card-body">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Acara</th>
-                    <th scope="col">Tanggal</th>
+                    <th scope="col"><i class="fas fa-sort-numeric-down"></i></th>
+                    <th scope="col"><i class="fas fa-city"></i> Nama Acara</th>
+                    <th scope="col"><i class="fas fa-calendar-alt"></i> Tanggal</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach ($events as $event)
                   <tr>
                     <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$event->title}}</td>
+                    <td><i class="fas fa-bullhorn"></i> {{$event->title}}</td>
                     <td>{{$event->start_date}}</td>
                   </tr>
                 @endforeach

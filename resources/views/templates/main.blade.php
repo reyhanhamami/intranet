@@ -75,11 +75,18 @@
     </div>
   </li>
 
-  <!-- Nav Item - job request -->
-  <li @if($halaman == 'jobrequest') echo class="active nav-item" @else echo class=" nav-item" @endif>
-    <a class="nav-link" href="{{ route('jobrequest.index')}}">
-      <i class="fas fa-fw fa-people-carry"></i>
-      <span>Job Request</span></a>
+ <!-- education -->
+  <li @if($halaman == 'education') echo class='active nav-item' @else echo class="nav-item" @endif>
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseedu" aria-expanded="true" aria-controls="collapseedu">
+      <i class="fas fa-fw fa-book-open"></i>
+      <span>Education</span>
+    </a>
+    <div id ="collapseedu" class="collapse">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Information :</h6>
+        <a href="{{ route('education.productit')}}" class="collapse-item">Product IT</a>
+      </div>
+    </div>
   </li>
 
   <!-- nav item - calender -->
@@ -95,6 +102,13 @@
         <a href="#" class="collapse-item">Calender Personal</a>
       </div>
     </div>
+  </li>
+
+  <!-- Nav Item - Help Desk -->
+  <li @if($halaman == 'helpdesk') echo class="active nav-item" @else echo class=" nav-item" @endif>
+    <a class="nav-link" href="{{ route('helpdesk.index')}}">
+      <i class="fas fa-fw fa-people-carry"></i>
+      <span>Help desk</span></a>
   </li>
 
   <!-- employee list -->
@@ -150,14 +164,6 @@
     <a href="{{route('polling.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-spinner"></i>
       <span>Polling</span>
-    </a>
-  </li>
-
-  <!-- education -->
-  <li @if($halaman == 'education') echo class='active nav-item' @else echo class="nav-item" @endif>
-    <a href="{{route('education.index')}}" class="nav-link">
-      <i class="fas fa-fw fa-book-open"></i>
-      <span>Education</span>
     </a>
   </li>
 

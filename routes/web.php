@@ -37,8 +37,8 @@ Route::get('/events/updatecooporatecalender', 'EventController@update')->name('e
 // Route::patch('/events/editcooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
 Route::get('/events/deletecooporatecalender', 'EventController@delete')->middleware('auth');
 
-// route untuk jobrequest
-Route::get('/jobrequest/jobindex', 'JobrequestController@index')->name('jobrequest.index')->middleware('auth');
+// route untuk helpdesk
+Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.index')->middleware('auth');
 
 // route untuk list employee
 Route::get('listemployee/listindex', 'ListemployeeController@index')->name('listemployee.index')->middleware('auth');
@@ -62,4 +62,4 @@ Route::get('projects/projectsindex', 'ProjectsController@index')->name('projects
 Route::get('polling/pollingindex', 'PollingController@index')->name('polling.index')->middleware('auth');
 
 // route untuk education
-Route::get('education/educationindex', 'EducationController@index')->name('education.index')->middleware('auth');
+Route::get('education/productit', 'EducationController@productit')->name('education.productit')->middleware('auth');
