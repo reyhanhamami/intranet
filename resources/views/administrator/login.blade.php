@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>Intranet - Login</title>
-
+  <link rel="shortcut icon" href="{{ url('public/assets/img/favicon.png')}}">
   <!-- Custom fonts for this template-->
   <link href="{{ url('public/assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -39,6 +39,11 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">أهلا و سهل!ا</h1>
                   </div>
+                  @if(session('gagal'))
+                    <div class="alert alert-danger">
+                      {{session('gagal')}}
+                    </div>
+                  @endif()
                   <form class="user" method="post" action="{{ route('login')}}">
                   {{ csrf_field() }}
                     <div class="form-group">
@@ -58,16 +63,16 @@
                       Login
                     </a> -->
                     <hr>
-                    <a href="{{route('dashboard')}}" class="btn btn-google btn-user btn-block">
+                    <!-- <a href="{{route('dashboard')}}" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
                     </a>
                     <a href="{{route('dashboard')}}" class="btn btn-facebook btn-user btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    </a> -->
                   </form>
-                  <hr>
+                  <!-- <hr> -->
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" href="https://bwa.id">Copyright &copy;2019 - IT BWA</a>
                   </div>
                 </div>
               </div>

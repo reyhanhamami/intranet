@@ -15,27 +15,33 @@
 //     return view('index');
 // });
 
-// route untuk login 
-Route::get('login', 'loginController@getLogin')->middleware('guest')->name('login');
-Route::post('login', 'loginController@postLogin')->middleware('guest')->name('postLogin');
+// route untuk login
+Route::middleware('guest')->group(function(){
+    Route::get('login', 'loginController@getLogin')->name('login');
+    Route::post('login', 'loginController@login')->name('postLogin');
+});
 
 // route untuk logout
 Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth');
 
 
 // route untuk home dashboard
-Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth');
-Route::get('/home', 'HomeController@index')->name('dashboard')->middleware('auth');
+Route::middleware('auth')->group(function(){
+    Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::get('/home', 'HomeController@index')->name('dashboard');
+});
 
 // route untuk calender cooporate
-Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender')->middleware('auth');
-Route::get('/events/addcooporatecalender', 'EventController@add')->name('events.addcooporatecalender')->middleware('auth');
-// Route::get('/events/detailcooporatecalender', 'EventController@detail')->name('events.detailcooporatecalender');
-Route::post('/events/addcooporatecalender', 'EventController@store')->name('events.storecooporatecalender')->middleware('auth');
-Route::get('/events/editcooporatecalender', 'EventController@edit')->name('events.editcooporatecalender')->middleware('auth');
-Route::get('/events/updatecooporatecalender', 'EventController@update')->name('events.updatecooporatecalender')->middleware('auth');
-// Route::patch('/events/editcooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
-Route::get('/events/deletecooporatecalender', 'EventController@delete')->middleware('auth');
+Route::middleware('auth')->group(function (){
+    Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender');
+    Route::get('/events/addcooporatecalender', 'EventController@add')->name('events.addcooporatecalender');
+    // Route::get('/events/detailcooporatecalender', 'EventController@detail')->name('events.detailcooporatecalender');
+    Route::post('/events/addcooporatecalender', 'EventController@store')->name('events.storecooporatecalender');
+    Route::get('/events/editcooporatecalender', 'EventController@edit')->name('events.editcooporatecalender');
+    Route::get('/events/updatecooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
+    // Route::patch('/events/editcooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
+    Route::get('/events/deletecooporatecalender', 'EventController@delete');
+});
 
 // route untuk helpdesk
 Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.index')->middleware('auth');
