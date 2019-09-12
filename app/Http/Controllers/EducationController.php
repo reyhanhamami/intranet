@@ -12,9 +12,14 @@ class EducationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Untuk Education Produk IT 
     public function productit()
     {
         return view ('education.productit');
+    }
+    public function addproductit()
+    {
+        return view('education.addproductit');
     }
 
     /**

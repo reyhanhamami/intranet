@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\artikel;
+use App\pengumuman;
 use Illuminate\Http\Request;
 
-class ArtikelController extends Controller
+class PengumumanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,10 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        // $halaman = 'artikel';
-        return view('artikel.artikelindex');
+        return view("pengumuman.pengumumanindex");
     }
-    public function addartikel(){
-        return view('artikel.addartikelindex');
+    public function add(){
+        return view("pengumuman.addpengumuman");
     }
 
     /**
@@ -45,10 +44,10 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\artikel  $artikel
+     * @param  \App\pengumuman  $pengumuman
      * @return \Illuminate\Http\Response
      */
-    public function show(artikel $artikel)
+    public function show(pengumuman $pengumuman)
     {
         //
     }
@@ -56,10 +55,10 @@ class ArtikelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\artikel  $artikel
+     * @param  \App\pengumuman  $pengumuman
      * @return \Illuminate\Http\Response
      */
-    public function edit(artikel $artikel)
+    public function edit(pengumuman $pengumuman)
     {
         //
     }
@@ -68,10 +67,10 @@ class ArtikelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\artikel  $artikel
+     * @param  \App\pengumuman  $pengumuman
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, artikel $artikel)
+    public function update(Request $request, pengumuman $pengumuman)
     {
         //
     }
@@ -79,10 +78,10 @@ class ArtikelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\artikel  $artikel
+     * @param  \App\pengumuman  $pengumuman
      * @return \Illuminate\Http\Response
      */
-    public function destroy(artikel $artikel)
+    public function destroy(pengumuman $pengumuman)
     {
         //
     }

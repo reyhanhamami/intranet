@@ -36,6 +36,12 @@ class ForHover extends ServiceProvider
         if (Request::segment(1) == 'listemployee') {
             $halaman = 'listemployee';
         }
+        if (Request::segment(1) == 'pengumuman') {
+            $halaman = 'pengumuman';
+        }
+        if(Request::segment(1) == 'pencerahan') {
+            $halaman = 'pencerahan';
+        }
         if (Request::segment(1) == 'polling') {
             $halaman = 'polling';
         }

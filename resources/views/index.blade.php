@@ -221,34 +221,20 @@
           <div class="col-md-12 " style="padding-right:0px !important;">
             <div id="carouselhadist" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
+              @foreach($mastertype as $indicator)
                 <li data-target="#carouselhadist" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselhadist" data-slide-to="1"></li>
-                <li data-target="#carouselhadist" data-slide-to="2"></li>
+              @endforeach
               </ol>
               <div class="carousel-inner">
                  <!-- looping quran/hadist/qoutes  -->
-                <div class="carousel-item active">
+                @foreach($mastertype as $master)
+                <div @if($master->id_pencerahan == '11') echo class="carousel-item active" @else class="carousel-item" @endif>
                   <div class="d-none d-md-block py-3">
-                    <h4 class="text-center"><i class="fas fa-quran"></i> Al-Quran</h4>
-                    <p class="text-center mx-auto mb-4" style="width:70%"><q>Hai Nabi, cukuplah Allah (menjadi Pelindung) bagimu dan bagi orang-orang mukmin yang mengikutimu.[QS. Al-Anfal: 64]</q></p>
+                    <h4 class="text-center"><i @if($master->type == '1') class="fas fa-quran" @elseif($master->type == '2') class="fas fa-book-reader" @else class="fab fa-battle-net" @endif></i> {{$master->nama}}</h4>
+                    <p class="text-center mx-auto mb-4" style="width:70%"><q>{{$master->deskripsi}}</q></p>
                   </div>
                 </div>
-                <!-- end looping  -->
-                <!-- looping quran/hadist/qoutes  -->
-                <div class="carousel-item">
-                  <div class="d-none d-md-block py-3">
-                    <h4 class="text-center"><i class="fas fa-book-reader"></i> Hadist</h4>
-                    <p class="text-center mx-auto mb-4" style="width:70%"><q>Rasulullah shallallahu ‘alaihi wa sallam bersabda, “Apabila Allah menghendaki hamba-Nya mendapatkan kebaikan maka Allah segerakan baginya hukuman di dunia. Dan apabila Allah menghendaki keburukan untuknya maka Allah akan menahan hukumannya sampai akan disempurnakan balasannya kelak di hari kiamat.” (HR. Tirmidzi, hadits hasan gharib, lihat as-Shahihah [1220])</q></p>
-                  </div>
-                </div>
-                <!-- end looping  -->
-                <!-- looping quran/hadist/qoute  -->
-                <div class="carousel-item">
-                  <div class="d-none d-md-block py-3">
-                    <h4 class="text-center"><i class="fab fa-battle-net"></i> Quote</h4>
-                    <p class="text-center mx-auto mb-4" style="width:70%"><q>If you can dream it, you can do it. - Walt Disney</q></p>
-                  </div>
-                </div>
+                @endforeach
                 <!-- end looping  -->
               </div>
               <a class="carousel-control-prev" href="#carouselhadist" role="button" data-slide="prev">

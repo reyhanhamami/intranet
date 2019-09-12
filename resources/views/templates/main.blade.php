@@ -114,11 +114,30 @@
 
   <!-- employee list -->
   <li @if($halaman == 'listemployee') echo class="active nav-item" @else echo class="nav-item" @endif>
-    <a href="{{ route('listemployee.index')}}" class="nav-link collapsed">
+    <a href="{{ route('listemployee')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-user-friends"></i>
       <span>List Employee</span>
     </a>
   </li>
+
+  <!-- pengumuman -->
+  <li @if($halaman == 'pengumuman') echo class="active nav-item" @else echo class="nav-item" @endif>
+    <a href="{{ route('pengumuman')}}" class="nav-link collapsed">
+      <i class="fas fa-bullhorn"></i>
+      <span>Pengumuman</span>
+    </a>
+  </li>
+
+ <!-- pencerahan -->
+  @if(Auth::user())
+  <li @if($halaman == 'pencerahan') echo class='active nav-item' @else echo class="nav-item" @endif>
+    <a href="{{ route('pencerahan')}}" class="collapsed nav-link">
+      <i class="fas fa-fw fa-lightbulb"></i>
+      <span>Pencerahan</span>
+    </a>
+  </li>
+  @else
+  @endif
 
   <!-- artikel -->
   <li <?php if($halaman == 'artikel'){echo 'class="nav-item active"';}else{echo 'class="nav-item"';} ?> class="nav-item">
@@ -160,13 +179,24 @@
     </a>
   </li>
 
-  <!-- polling -->
+  <!-- polling
   <li @if($halaman == 'polling') echo class='active nav-item' @else echo class="nav-item" @endif>
     <a href="{{route('polling.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-spinner"></i>
       <span>Polling</span>
     </a>
+  </li> -->
+
+  <!-- Grafik donatur -->
+  @if(Auth::user())
+  <li class="nav-item">
+    <a href="http://192.168.55.200:88/dashboard/menu/" class="collapsed nav-link" target="_blank">
+      <i class="fas fa-fw fa-chart-pie"></i>
+      <span>Grafik donatur</span>
+    </a>
   </li>
+  @else
+  @endif
 
     <hr class="sidebar-divider mb-2">
     
@@ -370,7 +400,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Mau Logout Nih?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Mau Logout?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
