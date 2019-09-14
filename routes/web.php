@@ -36,13 +36,14 @@ Route::get('logout', 'loginController@logout')->name('logout');
 // Route::middleware('auth')->group(function (){
     Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender');
     Route::get('/events/addcooporatecalender', 'EventController@add')->name('events.addcooporatecalender');
-    // Route::get('/events/detailcooporatecalender', 'EventController@detail')->name('events.detailcooporatecalender');
     Route::post('/events/addcooporatecalender', 'EventController@store')->name('events.storecooporatecalender');
     Route::get('/events/editcooporatecalender', 'EventController@edit')->name('events.editcooporatecalender');
-    Route::get('/events/updatecooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
-    // Route::patch('/events/editcooporatecalender', 'EventController@update')->name('events.updatecooporatecalender');
-    Route::get('/events/deletecooporatecalender', 'EventController@delete');
+    Route::get('events/{event}/geteditcooporatecalender', 'EventController@getedit');
+    Route::patch('events/{event}', 'EventController@update');
+    Route::delete('events/{event}', 'EventController@destroy');
 // });
+// untuk calender personal 
+
 
 // route untuk helpdesk
 Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.index');
@@ -60,6 +61,10 @@ Route::delete('listemployee/{listemployee}', 'ListemployeeController@destroy');
 // route untuk artikel
 Route::get('artikel/artikelindex', 'ArtikelController@index')->name('artikel.index');
 Route::get('artikel/addartikelindex', 'ArtikelController@addartikel')->name('addartikel');
+Route::post('artikel/addartikelindex', 'ArtikelController@store')->name('storeartikel');
+Route::get('artikel/{artikel}/editartikel', 'ArtikelController@edit')->name('editartikel');
+Route::patch('artikel/{artikel}', 'ArtikelController@update');
+Route::delete('artikel/{artikel}', 'ArtikelController@destroy');
 // ->middleware('auth');
 
 // route untuk wiki
@@ -90,6 +95,10 @@ Route::get('education/addproductit', 'EducationController@addproductit')->name('
 // route untuk pengumuman 
 Route::get('pengumuman/pengumumanindex', 'PengumumanController@index')->name('pengumuman');
 Route::get('pengumuman/addpengumuman', 'PengumumanController@add')->name('addpengumuman');
+Route::post('pengumuman/addpengumuman', 'PengumumanController@store')->name('storepengumuman');
+Route::delete('pengumuman/{pengumuman}', 'PengumumanController@destroy');
+Route::get('pengumuman/{pengumuman}/editpengumuman', 'PengumumanController@edit')->name('editpengumuman');
+Route::patch('pengumuman/{pengumuman}', 'PengumumanController@update');
 
 // route untuk pencerahan
 Route::get('pencerahan/pencerahanindex', 'PencerahanController@index')->name('pencerahan');
