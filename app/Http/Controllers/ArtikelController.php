@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\artikel;
 use Illuminate\Http\Request;
+use File;
 
 class ArtikelController extends Controller
 {
@@ -15,7 +16,8 @@ class ArtikelController extends Controller
     public function index()
     {
         // $halaman = 'artikel';
-        return view('artikel.artikelindex');
+        $artikels = Artikel::get();
+        return view('artikel.artikelindex', compact('artikels'));
     }
     public function addartikel(){
         return view('artikel.addartikelindex');
@@ -39,7 +41,31 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=358,max_height=250',
+            'tanggal' => 'required',
+            'deskripsi' => 'required'
+        ]);
+        
+        // simpan foto di variabel foto 
+        $foto = $request->file('foto');
+
+        // namain dulu 
+        $nama_foto = time()."-".$foto->getClientOriginalName();
+
+        // mau ditaro mana
+        $folder = 'public/assets/artikel';
+        $foto->move($folder,$nama_foto);
+
+
+        Artikel::create([
+            'judul' => $request->judul,
+            'foto' => $nama_foto,
+            'tanggal' => $request->tanggal,
+            'deskripsi' => $request->deskripsi
+        ]);
+        return redirect()->route('artikel.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -61,7 +87,7 @@ class ArtikelController extends Controller
      */
     public function edit(artikel $artikel)
     {
-        //
+        return view('artikel.editartikel', compact('artikel'));
     }
 
     /**
@@ -73,7 +99,33 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, artikel $artikel)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=358,max_height=250',
+            'tanggal' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        // kasih variabel foto untuk menyimpan hasil inputan
+        $foto = $request->file('foto');
+
+        // kasih nama dulu
+        $nama_foto = time().'-'.$foto->getClientOriginalName();
+
+        // kasih tempat untuk naruh fotonya
+        $lokasi = 'public/assets/artikel';
+
+        // pindahin namanya di lokasi yang tepat
+        $foto->move($lokasi,$nama_foto);
+
+        Artikel::where('id_artikel', $artikel->id_artikel)
+            ->update([
+                'judul' => $request->judul,
+                'foto' => $nama_foto,
+                'tanggal' => $request->tanggal,
+                'deskripsi' => $request->deskripsi
+            ]);
+        return redirect()->route('artikel.index')->with('update', 'Judul '.$request->judul.' berhasil diubah');
     }
 
     /**
@@ -84,6 +136,15 @@ class ArtikelController extends Controller
      */
     public function destroy(artikel $artikel)
     {
-        //
+        // cari lokasi foto
+        $image_path = "public/assets/artikel/$artikel->foto";
+
+        // kasih kondisi jika ada fotonya hapus 
+        if(File::exists($image_path)){
+            File::delete($image_path);
+        };
+
+        Artikel::destroy('id_artikel', $artikel->id_artikel);
+        return redirect()->back()->with('delete','Judul '. $artikel->judul . ' Berhasil dihapus!');
     }
 }

@@ -16,11 +16,11 @@
   <link href="{{ url('public/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}" rel="stylesheet">
   <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css') }}"/> -->
   <link rel="stylesheet" href="{{ url('public/assets/css/fullcalendar.css') }}"/>
   <!-- Custom styles for this template-->
   <link href="{{ url('public/assets/css/sb-admin-2.css') }}" rel="stylesheet">
-
+  <!-- wysiwyg editor  -->
+  <link rel="stylesheet" href="{{url('public/assets/dist/summernote.css')}}">
 </head>
 
 <body id="page-top">
@@ -320,9 +320,10 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @if(Auth::user())
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hi {{ Auth::user()->name}}</span>
+                  <img class="img-profile rounded-circle" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMVFRUVFRUXFxcXFxoYFRcVFRUXFxcXFxgdHSggHR0lHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NGg8PGisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAQMAwgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAABAAIEBwMG/8QAMRABAQEAAQEFBgMIAwAAAAAAAAER8AIDITFB0RRTYXGBklGR8QQSEzKhscHhBxVz/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDxTSyQWnVACSIKVarFASlIA6tCA2jVEC1SjCB1aLQBtWpANOjEB0akBCAFJQCkgSSArFFgELFgLQcQJJAkUAwNCghStAAgEsMQLAvogKBBJICsRgDEVAUSICQ/mlzyBKpZzlBJLAAsKwAliwEhqBAgECAaxYSAhnOalOc0DqSnOaCw4DnPEFixZ8P6KwEliBRYec7gAWNYgFZbxmgEQAxWNAGcTQBfu870M+H9P9oDIcBBJEFGsUi5zuBKc53o4Ak5yd/5KFAOc7znMXOd5/Ln1AaiMBZz/eLFFnP0AKxL8ufUAjQA55LDowBRSAG/Ln0BxASkBkajJ55Ac5i54A4BxDOc9GgENo1c5AOnAcAYc53EAFJz0ViBUQ0AMWEArGWqKDNWHAAR35/0QFQ4gVSMA4sRkBSNSGf25zQADSzncC5yVGdPPBUBzzSqwBnO8WY1Is5oMEyK8/XwBnnmlQBFMgsAM1rqrIJJA0pAZAUJ5zvMgLEd5/nv1m35f3Bqqc8VOc8TzzBNbz9RFgFq/wB+fVjW+igzefqpTec7mYCxX6qDAU5zvLNPTeev4gzUepkDo6rzmBWAMDQs5ygznORNc53EGcMSAtVkwE1isPTQU3nKkQWc56nnmy1gAy88TvzZoNT6qfH/ACOm89PQ/Ln0BWM1q1mgOco3niZzyHUC5yIQ0BYy1rNAaokC3nchqAxRmEGpTKzOkg1Jz9DghlA3nNEMFAnBDgGiRLQVRgoKoWrQXOd6znKorQZqI6gCotFBWhYsBb8kNQFQStAmpWYdBKVQg2GYQLUrK0Gjg0Sgb9FRoAiM61AOqpnQVFQBCjWtAUaaKC35obzuQAgwGpUMIEysw6DVUolQNDVKNBWEfvDQah1nUCSQCqwgClKKABZ0EtWIFzxSQMmVSq0DqEQNIHQMp5zuZIHnPJDVoFDDYBGA6CWrVoLRUKBGg6CC1aCFqoA6mUCOpAjAZQKGnQVqi06CWhaBhZ1AdW85Vq0FKggKwUAYKloCooBoIAJrnn6IAQgKCA6dBBIIGgtGgSEBCWgVo1aB0VACEtBJIEEgXPMJAiEBSiAoVAUEBQWgYtB0FqSBIGAlor6dj2HX1/ydPV1Z4/uy3PngMaHT7B23uu0+zq9F7B23uu0+zq9AcydPsHbe67T7Or0H/X9t7rtPs6vQHOHT7B23uu0+zq9D7B23uu0+zq9AcqdPsHbe67T7OoA+PTDYECw4kC6ukJAc7lIkBvSz1TvxIFhkSAyDEgXTFgQN9XS9D/416Jf2ftf/AG8rZf5OjznekD9f/Cnx+6+o/gz4/nfl+KQjPs/T8fuvl9TP2fpnhv3dXn9UgU/Z+n4+GfzXwvf+K/gdPx/O+Xd+KQraSB//2Q==">
                 @else
+                  <i class="fas fa-align-right"></i>
                 @endif
-                <img class="img-profile rounded-circle" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMVFRUVFRUXFxcXFxoYFRcVFRUXFxcXFxgdHSggHR0lHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NGg8PGisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAQMAwgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAABAAIEBwMG/8QAMRABAQEAAQEFBgMIAwAAAAAAAAER8AIDITFB0RRTYXGBklGR8QQSEzKhscHhBxVz/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDxTSyQWnVACSIKVarFASlIA6tCA2jVEC1SjCB1aLQBtWpANOjEB0akBCAFJQCkgSSArFFgELFgLQcQJJAkUAwNCghStAAgEsMQLAvogKBBJICsRgDEVAUSICQ/mlzyBKpZzlBJLAAsKwAliwEhqBAgECAaxYSAhnOalOc0DqSnOaCw4DnPEFixZ8P6KwEliBRYec7gAWNYgFZbxmgEQAxWNAGcTQBfu870M+H9P9oDIcBBJEFGsUi5zuBKc53o4Ak5yd/5KFAOc7znMXOd5/Ln1AaiMBZz/eLFFnP0AKxL8ufUAjQA55LDowBRSAG/Ln0BxASkBkajJ55Ac5i54A4BxDOc9GgENo1c5AOnAcAYc53EAFJz0ViBUQ0AMWEArGWqKDNWHAAR35/0QFQ4gVSMA4sRkBSNSGf25zQADSzncC5yVGdPPBUBzzSqwBnO8WY1Is5oMEyK8/XwBnnmlQBFMgsAM1rqrIJJA0pAZAUJ5zvMgLEd5/nv1m35f3Bqqc8VOc8TzzBNbz9RFgFq/wB+fVjW+igzefqpTec7mYCxX6qDAU5zvLNPTeev4gzUepkDo6rzmBWAMDQs5ygznORNc53EGcMSAtVkwE1isPTQU3nKkQWc56nnmy1gAy88TvzZoNT6qfH/ACOm89PQ/Ln0BWM1q1mgOco3niZzyHUC5yIQ0BYy1rNAaokC3nchqAxRmEGpTKzOkg1Jz9DghlA3nNEMFAnBDgGiRLQVRgoKoWrQXOd6znKorQZqI6gCotFBWhYsBb8kNQFQStAmpWYdBKVQg2GYQLUrK0Gjg0Sgb9FRoAiM61AOqpnQVFQBCjWtAUaaKC35obzuQAgwGpUMIEysw6DVUolQNDVKNBWEfvDQah1nUCSQCqwgClKKABZ0EtWIFzxSQMmVSq0DqEQNIHQMp5zuZIHnPJDVoFDDYBGA6CWrVoLRUKBGg6CC1aCFqoA6mUCOpAjAZQKGnQVqi06CWhaBhZ1AdW85Vq0FKggKwUAYKloCooBoIAJrnn6IAQgKCA6dBBIIGgtGgSEBCWgVo1aB0VACEtBJIEEgXPMJAiEBSiAoVAUEBQWgYtB0FqSBIGAlor6dj2HX1/ydPV1Z4/uy3PngMaHT7B23uu0+zq9F7B23uu0+zq9AcydPsHbe67T7Or0H/X9t7rtPs6vQHOHT7B23uu0+zq9D7B23uu0+zq9AcqdPsHbe67T7OoA+PTDYECw4kC6ukJAc7lIkBvSz1TvxIFhkSAyDEgXTFgQN9XS9D/416Jf2ftf/AG8rZf5OjznekD9f/Cnx+6+o/gz4/nfl+KQjPs/T8fuvl9TP2fpnhv3dXn9UgU/Z+n4+GfzXwvf+K/gdPx/O+Xd+KQraSB//2Q==">
               </a>
             
               <!-- Dropdown - User Information -->
@@ -423,6 +424,9 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ url('public/assets/js/sb-admin-2.js') }}"></script>
+
+  <!-- summernote editor JavaScript  -->
+  <script src="{{url('public/assets/dist/summernote.js')}}"></script>
 
   <!-- Page level plugins -->
   <script src="{{ url('public/assets/vendor/chart.js/Chart.min.js') }}"></script>

@@ -1,15 +1,15 @@
 @extends('templates.main')
-@section('title', 'Intranet - Add Data Karyawan')
+@section('title', 'Intranet - Edit Data Karyawan')
 
 <!-- start template -->
 <div class="container-fluid">
-    @section('judul', 'Add Data Karyawan')
+    @section('judul', 'Edit Data Karyawan')
     @section('sub', 'BWA')
 
     @section('konten')
         <div class="row">
             <div class="col-12">
-                <div class="card container shadow border-left-success pt-3">
+                <div class="card container shadow border-left-warning pt-3">
                     <form action="/intranet/listemployee/{{ $listemployee->id_employee }}" method="post" enctype="multipart/form-data">
                     @method('patch')
                     @csrf

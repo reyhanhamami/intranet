@@ -46,6 +46,7 @@ class PencerahanController extends Controller
     {
         $request->validate([
             'type' => 'required',
+            'divisi' => 'required',
             'deskripsi' => 'required',
         ]);
         Pencerahan::create($request->all());

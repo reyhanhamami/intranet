@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\pengumuman;
+use App\masterdivisi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengumumanController extends Controller
 {
@@ -14,10 +16,15 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        return view("pengumuman.pengumumanindex");
+        // pengumuman join masterdivisi
+        $masterdivisi = DB::table('pengumuman')->join('masterdivisi', 'pengumuman.divisi' ,'=','masterdivisi.id_divisi')->select('pengumuman.*','masterdivisi.nama_divisi')->get();
+
+        return view("pengumuman.pengumumanindex", compact('masterdivisi'));
     }
-    public function add(){
-        return view("pengumuman.addpengumuman");
+    public function add()
+    {
+        $masterdivisi = Masterdivisi::get();
+        return view("pengumuman.addpengumuman", compact('masterdivisi'));
     }
 
     /**
@@ -38,7 +45,14 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'divisi' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        Pengumuman::create($request->all());
+        return redirect()->route('pengumuman')->with('success', 'data berhasil ditambahkan');
     }
 
     /**
@@ -60,7 +74,8 @@ class PengumumanController extends Controller
      */
     public function edit(pengumuman $pengumuman)
     {
-        //
+        $masterdivisi = Masterdivisi::get();
+        return view('pengumuman.editpengumuman', compact('masterdivisi','pengumuman'));
     }
 
     /**
@@ -72,7 +87,19 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, pengumuman $pengumuman)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'divisi' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        Pengumuman::where('id_pengumuman',$pengumuman->id_pengumuman)
+            ->update([
+                'judul' => $request->judul,
+                'divisi' => $request->divisi,
+                'deskripsi' => $request->deskripsi
+            ]);
+        return redirect()->route('pengumuman')->with('update', 'Data '.$pengumuman->judul .' berhasil di Update');
     }
 
     /**
@@ -83,6 +110,7 @@ class PengumumanController extends Controller
      */
     public function destroy(pengumuman $pengumuman)
     {
-        //
+        Pengumuman::destroy('id_pengumuman', $pengumuman->id_pengumuman);
+        return redirect()->back()->with('delete', 'Data ' .$pengumuman->judul. ' sudah terhapus');
     }
 }

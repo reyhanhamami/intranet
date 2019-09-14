@@ -16,6 +16,11 @@
                             <div class="card-header">
                                 <h6>Upcoming Personal Events</h6>
                                 <a href="{{ route('events.cooporatecalender')}}" class="btn btn-secondary mt-2"><i class="fas fa-undo mr-2"></i>Kembali</a>
+                                   @if(session('delete'))
+                                        <div class="alert alert-danger mt-2">
+                                        {{session('delete')}}
+                                        </div>
+                                    @endif
                             </div>
                             <div class="card-body">
                             <table class="table">
@@ -23,6 +28,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Acara</th>
+                                    <th scope="col">Foto</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col"><i class="fas fa-cogs"></i></th>
                                 </tr>
@@ -32,10 +38,17 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$event->title}}</td>
+                                    <td>
+                                    <img src=' {{url("public/assets/cooporateevent/".$event->foto)}}' alt="Gambar tidak ditemukan" width="100" height="100">
+                                    </td>
                                     <td>{{$event->start_date}}</td>
                                     <td>
-                                        <a href="{{ route('events.updatecooporatecalender', $event['id']) }}" class="btn btn-primary mr-2 mt-2" type="submit">Ubah</a>
-                                        <a href="{{action('EventController@delete', $event['id'])}}" class="btn btn-danger mr-2 mt-2" type="submit">hapus</a>
+                                        <a href="{{$event->id_eventcooporate}}/geteditcooporatecalender" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                        <form action="{{$event->id_eventcooporate}}" method="post" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                            <button  class="btn btn-danger btn-sm " type="submit"><i class="fas fa-trash"></i> hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -100,27 +100,22 @@
           <div class="col-md-12 " style="padding-right:0px !important;">
             <div id="carouselpengumuman" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-                <li data-target="#carouselpengumuman" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselpengumuman" data-slide-to="1"></li>
-                <li data-target="#carouselpengumuman" data-slide-to="2"></li>
+                @foreach($pengumuman as $pengumumans)
+                <li data-target="#carouselpengumuman" data-slide-to="0" @if($pengumumans->id_pengumuman == $pengumumanfirst) class="active" @endif></li>
+                @endforeach
               </ol>
               <div class="carousel-inner">
                  <!-- looping pengumuman  -->
-                <div class="carousel-item active">
+                 @foreach($pengumuman as $pengumumans)
+                <div @if($pengumumans->id_pengumuman == $pengumumanfirst) class="carousel-item active" @else class="carousel-item" @endif>
                   <div class="d-none d-md-block py-3">
                     <h4 class="text-center"><i class="fas fa-newspaper"></i> Pengumuman</h4>
-                    <p class="text-center mb-4" >wajib Menggunakan attribut lengkap pada saat  <a href="#">lihat selengkapnya...</a></p>
+                    <p class="text-center mb-4" >{{ str_limit(strip_tags($pengumumans->deskripsi), 50)}}  <a href="{{ route('pengumuman').'#'.$pengumumans->id_pengumuman}}">lihat selengkapnya</a></p>
                   </div>
                 </div>
+                @endforeach
                   <!-- end looping  -->
-                <!-- looping pengumuman  -->
-                <div class="carousel-item">
-                  <div class="d-none d-md-block py-3">
-                    <h4 class="text-center"><i class="fas fa-newspaper"></i> Pengumuman</h4>
-                    <p class="text-center mb-4" >wajib Menggunakan attribut lengkap pada saat  <a href="#">lihat selengkapnya...</a></p>
-                   
-                  </div>
-                </div><!-- end looping  -->
+               
               </div>
               <a class="carousel-control-prev" href="#carouselpengumuman" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -141,38 +136,25 @@
           <div class="col-xl-5 col-md-12" style="padding-right:0px !important;">
             <div id="carouselcooporate" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-                <li data-target="#carouselcooporate" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselcooporate" data-slide-to="1"></li>
-                <li data-target="#carouselcooporate" data-slide-to="2"></li>
+              @foreach($events as $event)
+                <li data-target="#carouselcooporate" data-slide-to="0" @if($event->id_eventcooporate == $eventfirst) class="active" @endif></li>
+              @endforeach
               </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
+               <!-- looping slider event cooporate -->
+               @foreach($events as $event)
+                <div @if($event->id_eventcooporate == $eventfirst) class="carousel-item active" @else class="carousel-item" @endif>
                 <div class="overflow">
-                  <img src="{{ url('public/assets/img/badan.jpg')}}" class="d-block w-100 full-image " alt="Gambar Hilang">
+                  <img src="{{ url('public/assets/cooporateevent/'.$event->foto)}}" class="d-block w-100 full-image " alt="Gambar Hilang">
                 </div>
                   <div class="carousel-caption font-weight-bold black  d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
-                    <p class="text-left" style="background:white;opacity:0.5;border-radius:5px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h2 style="background:white;opacity:0.7;border-radius:5px;">{{$event->title}}</h2>
+                    <p class="text-left" style="background:white;opacity:0.7;border-radius:5px;">{{str_limit(strip_tags($event->deskripsi),100)}}</p>
+                    <a href="{{$event->url}}" class="btn btn-info ">Lihat selengkapnya</a>
                   </div>
                 </div>
-                <div class="carousel-item">
-                <div class="overflow">
-                  <img src="{{url('public/assets/img/3.jpg') }}" class="d-block w-100 full-image" alt="Gambar Hilang">
-                </div>
-                  <div class="carousel-caption  font-weight-bold black d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
-                    <p style="background:white;opacity:0.5;border-radius:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                <div class="overflow">
-                  <img src="{{url('public/assets/img/kantor-yayasan-badan-wakaf-tebet.jpg')}}" class="d-block w-100 full-image" alt="Gambar Rusak">
-                </div>
-                  <div class="carousel-caption font-weight-bold black  d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>
-                    <p style="background:white;opacity:0.5;border-radius:5px;">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </div>
-                </div>
+                @endforeach
+                <!-- end looping slider event cooporate  -->
               </div>
               <a class="carousel-control-prev" href="#carouselcooporate" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

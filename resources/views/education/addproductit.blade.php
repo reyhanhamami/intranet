@@ -18,19 +18,19 @@
                     </div>
                     <div class="form-group">
                         <label >Upload Screenshot 1</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="" id="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label >Upload Screenshot 2</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="" id="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label >Upload Screenshot 3</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="" id="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label >Upload File(.ppt/.excel/.docx)</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="" id="" class="form-control">
                     </div>
 
                         <div class="form-group  mt-4">

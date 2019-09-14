@@ -49,7 +49,7 @@ class ListemployeeController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max-height=180',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max_height=180',
             'divisi' => 'required',
             'jabatan' => 'required',
             'email' => 'required|email',
@@ -114,7 +114,7 @@ class ListemployeeController extends Controller
     {   
         $request->validate([
             'nama' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max-height=180',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max_height=180',
             'divisi' => 'required',
             'jabatan' => 'required',
             'email' => 'required|email',
