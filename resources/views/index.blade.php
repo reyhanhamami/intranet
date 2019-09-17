@@ -199,7 +199,7 @@
        
         <!-- section 3 -->
              <!-- quran/hadist/qoutes -->
-           <div class="bd-example row mb-5 card shadow" style="clear:both !important;">
+           <div class="bd-example row mb-5 mt-4 card shadow" style="clear:both !important;">
           <div class="col-md-12 " style="padding-right:0px !important;">
             <div id="carouselhadist" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
@@ -236,7 +236,7 @@
         <!-- section 4 -->
         <!-- Carousel slider berita2 bwa yang sudah terjadi -->
         <div class="bd-example row">
-          <!-- upcoming cooporate events -->
+          <!-- upcoming personal events -->
           <div class="col-xl-6 col-md-12" style="padding-left:0px !important;border-radius:none !important;">
             <div class="card" style="background:none !important;border:none !important;">
               <div class="card-header" style="padding-top:0px !important">
@@ -252,53 +252,40 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($events as $event)
+                  @foreach ($personalevent as $personal)
                     <tr>
                       <th scope="row">{{$loop->iteration}}</th>
-                      <td><i class="fas fa-bullhorn"></i> {{$event->title}} </td>
-                      <td>{{date('D d-M-Y', strtotime($event->start_date))}}</td>
+                      <td><i class="fas fa-bullhorn"></i> {{$personal->title}} </td>
+                      <td>{{date('D d-M-Y', strtotime($personal->start_date))}}</td>
                     </tr>
                   @endforeach
                 </tbody>
               </table>
               </div>
-          </div> <!-- end upcoming event cooporate -->
+          </div> <!-- end upcoming personal cooporate -->
             </div>
           <div class="col-xl-5 col-md-12" style="padding-right:0px !important;">
             <div id="carouselpersonal" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-                <li data-target="#carouselpersonal" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselpersonal" data-slide-to="1"></li>
-                <li data-target="#carouselpersonal" data-slide-to="2"></li>
+                @foreach($personalevent as $personal)
+                <li data-target="#carouselpersonal" data-slide-to="0" @if($personal->id_eventpersonal == $personaleventfirst) class="active" @endif></li>
+                @endforeach
               </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="overflow">
-                  <img src="{{ url('public/assets/img/badan.jpg')}}" class="d-block w-100 full-image " alt="Gambar Hilang">
-                </div>
-                  <div class="carousel-caption font-weight-bold black  d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">First slide label</h2>
-                    <p class="text-left" style="background:white;opacity:0.5;border-radius:5px;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <!-- looping personal event slider  -->
+              @foreach($personalevent as $personal)
+                <div @if($personal->id_eventpersonal == $personaleventfirst) class="carousel-item active" @else class = "carousel-item" @endif>
+                  <div class="overflow">
+                    <img src="{{ url('public/assets/personalevent/'.$personal->foto)}}" class="d-block w-100 full-image " alt="Gambar Hilang">
                   </div>
+                    <div class="carousel-caption font-weight-bold black  d-none d-md-block">
+                      <h2 style="background:white;opacity:0.5;border-radius:5px;">{{$personal->title}}</h2>
+                      <p class="text-left" style="background:white;opacity:0.5;border-radius:5px;">{{str_limit(strip_tags($personal->deskripsi), 50)}}</p>
+                      <a href="{{$personal->url}}" class="btn btn-info ">Lihat selengkapnya</a>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                <div class="overflow">
-                  <img src="{{url('public/assets/img/3.jpg') }}" class="d-block w-100 full-image" alt="Gambar Hilang">
-                </div>
-                  <div class="carousel-caption  font-weight-bold black d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">Second slide label</h2>
-                    <p style="background:white;opacity:0.5;border-radius:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                <div class="overflow">
-                  <img src="{{url('public/assets/img/kantor-yayasan-badan-wakaf-tebet.jpg')}}" class="d-block w-100 full-image" alt="Gambar Rusak">
-                </div>
-                  <div class="carousel-caption font-weight-bold black  d-none d-md-block">
-                    <h2 style="background:white;opacity:0.5;border-radius:5px;">Third slide label</h2>
-                    <p style="background:white;opacity:0.5;border-radius:5px;">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </div>
-                </div>
+                @endforeach
+               <!-- end looping personal event slider -->
               </div>
               <a class="carousel-control-prev" href="#carouselpersonal" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

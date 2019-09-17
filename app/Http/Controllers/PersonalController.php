@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\personal;
 use Illuminate\Http\Request;
 use Calendar;
-use App\Event;
 use File;
 
-class EventController extends Controller
+
+class PersonalController extends Controller
 {
-    public function index()
+   public function index()
     {
-        $events = [];
-        $data = Event::all();
+        $personals = [];
+        $data = Personal::all();
         if($data->count()) {
             foreach ($data as $key => $value) {
-                $events[] = Calendar::event(
+                $personals[] = Calendar::event(
                     $value->title,
                     true,
                     new \DateTime($value->start_date),
@@ -29,11 +30,11 @@ class EventController extends Controller
                 );
             }
         }
-        $calendar = Calendar::addEvents($events);
-        return view('events.cooporatecalender', compact('calendar'));
+        $calendar = Calendar::addEvents($personals);
+        return view('personalevent.personalevent', compact('calendar'));
     }
     public function add(){
-        return view('events.addcooporatecalender');
+        return view('personalevent.addpersonalevent');
     }
     public function store(Request $request){
         $request->validate([
@@ -51,12 +52,12 @@ class EventController extends Controller
         $nama_foto = time()."-".$foto->getClientOriginalName();
 
         // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/cooporateevent';
+        $lokasi = 'public/assets/personalevent';
         // pindahin tuh nama ke rumahnya
         $foto->move($lokasi,$nama_foto);
 
 
-        Event::create([
+        Personal::create([
             'title' => $request->title,
             'foto' => $nama_foto,
             'color' => $request->color,
@@ -65,17 +66,18 @@ class EventController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
         ]);
-        return redirect()->route('events.cooporatecalender')->with('success', 'Acara berhasil ditambahkan');
+        return redirect()->route('personalevent')->with('success', 'Acara berhasil ditambahkan');
     }
+    
     public function edit(){
-        $editevents = Event::get();
-        // $event = Event::find($id);
-        return view('events.editcooporatecalender', compact('editevents'));
+        $personal = Personal::get();
+        return view('personalevent.editpersonalevent', compact('personal'));
     }
-    public function getedit(Event $event){
-        return view('events.geteditcooporatecalender', compact('event'));
+
+    public function getedit(personal $personal){
+        return view('personalevent.geteditpersonalevent', compact('personal'));
     }
-    public function update(Request $request, Event $event){
+    public function update(Request $request, Personal $personal){
           $request->validate([
             'title' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=357,min_height=210,max_width=457,max_height=401',
@@ -84,6 +86,13 @@ class EventController extends Controller
             'deskripsi' => 'required',
         ]);
         
+        // cari lokasi fotonya 
+        $image_path = "public/assets/personalevent/$personal->foto";
+        // klo ditemuin hapus klo engak yaudah 
+        if(File::exists($image_path)){
+            File::delete($image_path);
+        };
+        
         // simpan di variabel untuk request file
         $foto = $request->file('foto');
 
@@ -91,11 +100,11 @@ class EventController extends Controller
         $nama_foto = time()."-".$foto->getClientOriginalName();
 
         // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/cooporateevent';
+        $lokasi = 'public/assets/personalevent';
         // pindahin tuh nama ke rumahnya
         $foto->move($lokasi,$nama_foto);
         
-        Event::where('id_eventcooporate', $event->id_eventcooporate)
+        Personal::where('id_eventpersonal', $personal->id_eventpersonal)
                 ->update([
                     'title' => $request->title,
                     'foto' => $nama_foto,
@@ -104,17 +113,17 @@ class EventController extends Controller
                     'deskripsi' => $request->deskripsi,
                     'url' => $request->url
                 ]);
-        return redirect()->route('events.cooporatecalender')->with('update','Data '.$event->title. ' berhasil di update'); 
+        return redirect()->route('editpersonalevent')->with('update','Data '.$personal->title. ' berhasil di update'); 
     }
 
-    public function destroy(Event $event){
+    public function destroy(Personal $personal){
         // cari lokasi fotonya 
-        $image_path = "public/assets/cooporateevent/$event->foto";
+        $image_path = "public/assets/personalevent/$personal->foto";
         // klo ditemuin hapus klo engak yaudah 
         if(File::exists($image_path)){
             File::delete($image_path);
         };
-        Event::destroy($event->id_eventcooporate);
-        return redirect()->back()->with('delete','Acara '.$event->title.' berhasil dihapus');
+        Personal::destroy($personal->id_eventpersonal);
+        return redirect()->back()->with('delete','Acara '.$personal->title.' berhasil dihapus');
     }
 }

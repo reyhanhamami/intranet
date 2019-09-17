@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\education;
+use App\masterdivisi;
 use Illuminate\Http\Request;
+use File;
+use Illuminate\Support\Facades\DB;
 
 class EducationController extends Controller
 {
@@ -15,11 +18,93 @@ class EducationController extends Controller
     // Untuk Education Produk IT 
     public function productit()
     {
-        return view ('education.productit');
+        $education = Education::get();
+        return view ('education.productit', compact('education'));
     }
     public function addproductit()
     {
-        return view('education.addproductit');
+        $masterdivisi = Masterdivisi::get();
+        return view('education.addproductit', compact('masterdivisi'));
+    }
+    public function storeproductit(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'divisi' => 'required',
+            'file' => 'required|file|mimes:pdf|max:2040',
+        ]);
+
+        // kasih nama file 
+        $file = $request->file('file');
+
+        // kasih nama
+        $nama_file = rand().'-'.$file->getClientOriginalName();
+
+        // kasih rumah
+        $lokasi_file = 'public/assets/document';
+
+        // pindahin nama ke rumah yang seharusnya
+        $file->move($lokasi_file,$nama_file);
+
+        Education::create([
+            'judul' => $request->judul,
+            'divisi' => $request->divisi,
+            'file' => $nama_file,
+        ]);
+        return redirect()->route('education.productit')->with('success','Data berhasil ditambahkan');
+    }
+
+    public function destroyproductit(Education $education){
+        // cari lokasi foldernya
+        $file_path = "public/assets/document/$education->file";
+
+        // cek kondisi jika ada maka hapus
+        if(File::exists($file_path)){
+            File::delete($file_path);
+        };
+
+        Education::destroy($education->id_education);
+        return redirect()->back()->with('delete', 'Data '.$education->judul.' berhasil dihapus');
+    }
+
+    public function editproductit(Education $education)
+    {
+        $masterdivisi = Masterdivisi::get();
+        return view('education.editproductit', compact('education','masterdivisi'));
+    }
+    
+    public function updateproductit(Request $request, Education $education)
+    {
+           $request->validate([
+            'judul' => 'required',
+            'divisi' => 'required',
+            'file' => 'required|file|mimes:pdf',
+        ]);
+
+        // kasih nama foto 
+        $file = $request->file('file');
+
+        // kasih nama
+        $nama_file = rand().'-'.$file->getClientOriginalName();
+
+        // kasih rumah
+        $lokasi_file = 'public/assets/document';
+        
+        // pindahin nama ke rumah yang seharusnya
+        $file->move($lokasi_file,$nama_file);
+
+        // cek kondisi jika ada maka hapus
+        if(File::exists($file_path)){
+            File::delete($file_path);
+        };
+
+        Education::where('id_education', $education->id_education)
+                ->update([
+            'judul' => $request->judul,
+            'divisi' => $request->divisi,
+            'file' => $nama_file,
+        ]);
+        return redirect()->route('education.productit')->with('update','Data '.$education->judul.' Berhasil di rubah');
     }
 
     /**

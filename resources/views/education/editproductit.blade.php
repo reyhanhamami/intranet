@@ -10,11 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card container shadow border-left-success pt-3">
-                    <form action="{{ route('storeproductit') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('education/'.$education->id_education) }}" method="post" enctype="multipart/form-data">
+                    @method('patch')
                     @csrf
                    <div class="form-group">
                         <label for="judul">Judul</label>
-                        <input type="text" name="judul" value="{{old('judul')}}" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul">
+                        <input type="text" name="judul" value="{{$education->judul}}" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul">
                         @error('judul')
                             <div class="invalid-feedback">
                              *judul wajib diisi
@@ -24,9 +25,11 @@
                    <div class="form-group">
                         <label for="judul">Divisi</label>
                         <select name="divisi" id="" class="form-control @error('divisi') is-invalid @enderror">
-                            <option value="">-- Pilih divisi--</option>
+                            
                             @foreach($masterdivisi as $divisi)
-                                <option value="{{$divisi->id_divisi}}">{{$divisi->nama_divisi}}</option>
+                                <option value="{{$divisi->id_divisi}}"
+                                @if($divisi->id_divisi == $education->divisi) selected @endif
+                                >{{$divisi->nama_divisi}}</option>
                             @endforeach
                         </select>
                         @error('divisi')
@@ -45,7 +48,7 @@
                         @enderror
                     </div>
                         <div class="form-group  mt-4">
-                            <button class="btn btn-primary mr-2 mt-2" type="submit">Simpan</button>
+                            <button class="btn btn-primary mr-2 mt-2" type="submit">Rubah</button>
                             <!-- <a href="" class="btn btn-primary mr-2 mt-2">Simpan</a> -->
                             <a href="{{ route('education.productit')}}" class="btn btn-warning mt-2">Kembali</a>
                         </div>
