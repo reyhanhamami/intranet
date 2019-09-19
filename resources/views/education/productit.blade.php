@@ -52,7 +52,7 @@
                     <?php $i = 1 ?>
 
                     @foreach($masterdivisi as $divisi)
-                    <a href="" target="_blank"><li class="list-group-item">{{$i++}}.@if($masterdivisi == NULL) Data tidak ditemukan @else{{$divisi->judul}} @endif | <span>Divisi @if($masterdivisi == NULL) @else{{$divisi->nama_divisi}}@endif</span>
+                    <a href="response()->file({{url('public/assets/document/1991889713-WebMeeting.pdf')}})" target="_blank"><li class="list-group-item">{{$i++}}.@if($masterdivisi == NULL) Data tidak ditemukan @else{{$divisi->judul}} @endif | <span>Divisi @if($masterdivisi == NULL) @else{{$divisi->nama_divisi}}@endif</span>
                       @if(!Auth::user())
                       @elseif(Auth::user()->name == 'admin')
                       <form action="@if($masterdivisi == NULL) @else{{$divisi->id_education}} @endif" method="post" class="d-inline">

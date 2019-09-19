@@ -191,7 +191,7 @@
   <!-- Grafik donatur -->
   @if(Auth::user())
   <li class="nav-item">
-    <a href="http://192.168.55.200:88/dashboard/menu/" class="collapsed nav-link" target="_blank">
+    <a href="http://mymgm.bwa.id:88/dashboard/menu/" class="collapsed nav-link" target="_blank">
       <i class="fas fa-fw fa-chart-pie"></i>
       <span>Grafik donatur</span>
     </a>
