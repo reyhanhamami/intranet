@@ -76,19 +76,6 @@
     </div>
   </li>
 
- <!-- education -->
-  <li @if($halaman == 'education') echo class='active nav-item' @else echo class="nav-item" @endif>
-    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseedu" aria-expanded="true" aria-controls="collapseedu">
-      <i class="fas fa-fw fa-book-open"></i>
-      <span>Education</span>
-    </a>
-    <div id ="collapseedu" class="collapse">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Information :</h6>
-        <a href="{{ route('education.productit')}}" class="collapse-item">Product IT</a>
-      </div>
-    </div>
-  </li>
 
   <!-- nav item - calender -->
   <li @if($halaman == 'events') echo class="nav-item active" @else echo class='nav-item' @endif>
@@ -100,9 +87,23 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Calender :</h6>
         <a href="{{ route('events.cooporatecalender') }}" class="collapse-item">Calender Cooporate</a>
-        <a href="#" class="collapse-item">Calender Personal</a>
+        <a href="{{route('personalevent')}}" class="collapse-item">Calender Personal</a>
       </div>
     </div>
+  </li>
+  
+ <!-- education -->
+  <li @if($halaman == 'education') echo class='active nav-item' @else echo class="nav-item" @endif>
+    <a href="{{ route('education.productit')}}" class="nav-link collapsed">
+      <i class="fas fa-fw fa-book-open"></i>
+      <span>Documents</span>
+    </a>
+    <!-- <div id ="collapseedu" class="collapse">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Information :</h6>
+        <a href="" class="collapse-item">Product IT</a>
+      </div>
+    </div> -->
   </li>
 
   <!-- Nav Item - Help Desk -->
@@ -116,7 +117,7 @@
   <li @if($halaman == 'listemployee') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{ route('listemployee')}}" class="nav-link collapsed">
       <i class="fas fa-fw fa-user-friends"></i>
-      <span>List Employee</span>
+      <span>Employee</span>
     </a>
   </li>
 
@@ -406,7 +407,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">klik tombol "Logout" ya kalau mau keluar, Have a nice day ^^</div>
+        <div class="modal-body">klik tombol "Logout" untuk mengakhiri sesi login ini</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>

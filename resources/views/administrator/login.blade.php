@@ -45,17 +45,17 @@
                     </div>
                   @endif()
                   <form class="user" method="post" action="{{ route('login')}}">
-                  {{ csrf_field() }}
+                  @csrf
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autofocus required>
+                      <input type="text" @if(Auth::viaRemember()) value="{{Auth::user()->email}}" @endif class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autofocus required>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" @if(Auth::viaRemember()) value="{{Auth::user()->password}}" @endif name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="remember">
+                        <label class="custom-control-label" for="customCheck">Ingat sesi ini</label>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-user btn-primary btn-block">Login</button>

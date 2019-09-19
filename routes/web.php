@@ -22,8 +22,7 @@
 // });
 
 // route untuk logout
-Route::get('logout', 'loginController@logout')->name('logout');
-// ->middleware('auth');
+Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth');
 
 
 // route untuk home dashboard
@@ -43,7 +42,13 @@ Route::get('logout', 'loginController@logout')->name('logout');
     Route::delete('events/{event}', 'EventController@destroy');
 // });
 // untuk calender personal 
-
+    Route::get('/personalevent/personalevent', 'PersonalController@index')->name('personalevent');
+    Route::get('/personalevent/addpersonalevent', 'PersonalController@add')->name('addpersonalevent');
+    Route::post('/personalevent/addpersonalevent', 'PersonalController@store')->name('storepersonalevent');
+    Route::get('/personalevent/editpersonalevent', 'PersonalController@edit')->name('editpersonalevent');
+    Route::get('personalevent/{personal}/geteditpersonalevent', 'PersonalController@getedit');
+    Route::patch('personalevent/{personal}', 'PersonalController@update');
+    Route::delete('personalevent/{personal}', 'PersonalController@destroy');
 
 // route untuk helpdesk
 Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.index');
@@ -52,6 +57,7 @@ Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.in
 // route untuk list employee
 Route::get('listemployee/listindex', 'ListemployeeController@index')->name('listemployee');
 Route::get('listemployee/addlistindex', 'ListemployeeController@addlist')->name('addlistemployee');
+Route::get('listemployee/cari', 'ListemployeeController@cari');
 Route::post('listemployee/addlistindex', 'ListemployeeController@store')->name('storelistemployee');
 Route::get('listemployee/{listemployee}/editemployee', 'ListemployeeController@edit');
 Route::patch('listemployee/{listemployee}', 'ListemployeeController@update');
@@ -89,7 +95,13 @@ Route::get('polling/pollingindex', 'PollingController@index')->name('polling.ind
 
 // route untuk education
 Route::get('education/productit', 'EducationController@productit')->name('education.productit');
+Route::get('education/cari', 'EducationController@cari')->name('education.cari');
+Route::get('education/openpdf', 'EducationController@openpdf')->name('openpdf');
 Route::get('education/addproductit', 'EducationController@addproductit')->name('education.addproductit');
+Route::post('education/addproductit', 'EducationController@storeproductit')->name('storeproductit');
+Route::get('education/{education}/editproductit', 'EducationController@editproductit');
+Route::patch('education/{education}', 'EducationController@updateproductit');
+Route::delete('education/{education}', 'EducationController@destroyproductit');
 // ->middleware('auth');
 
 // route untuk pengumuman 

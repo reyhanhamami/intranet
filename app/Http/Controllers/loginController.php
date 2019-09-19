@@ -8,6 +8,8 @@ use App\User;
 
 class loginController extends Controller
 {
+
+    
     // show tampilan login 
      public function getLogin(){
         return view("administrator.login");
@@ -31,13 +33,16 @@ class loginController extends Controller
     //proses login
     public function login(Request $request){
         // $u = User::where('email', '=', $request->email)->first();
+        $remember = $request->remember;
         $credentials = [
-            'email' => $request->get('email'),
-            'password' => md5($request->get('password'))
+            'email' => $request->email,
+            'password' => md5($request->password)
         ];
-        if (Auth::Attempt($credentials)){
+        if (Auth::Attempt($credentials, $remember)){
             return redirect()->intended(route('dashboard'));
         }
+        
+     
         return redirect()->back()->with('gagal', 'Password atau Email anda salah!!')->withInput($request->only('email', 'password'));
     }
 

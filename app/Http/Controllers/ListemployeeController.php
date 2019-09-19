@@ -19,7 +19,14 @@ class ListemployeeController extends Controller
     public function index()
     {
         // listemployee join divisi
-        $join = DB::table('employee')->join('masterdivisi', 'employee.divisi', '=','masterdivisi.id_divisi')->select('employee.*','masterdivisi.nama_divisi')->get();
+        $join = DB::table('employee')->orderBy('nama','ASC')->join('masterdivisi', 'employee.divisi', '=','masterdivisi.id_divisi')->select('employee.*','masterdivisi.nama_divisi')->paginate(20);
+        return view('listemployee.listindex', compact('join'));
+    }
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $join = DB::table('employee')->where('nama','like', "%".$cari."%")->orderBy('nama','ASC')->join('masterdivisi', 'employee.divisi','=','masterdivisi.id_divisi')->select('employee.*','masterdivisi.nama_divisi')->paginate(20);
+
         return view('listemployee.listindex', compact('join'));
     }
     public function addlist()

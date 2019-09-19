@@ -1,17 +1,17 @@
 @extends('templates.main')
-@section('title', 'Intranet - Cooporate Calender')
+@section('title', 'Intranet - Personal Calender')
 
 <!-- start template -->
 <div class="container-fluid">
-    @section('judul', 'Cooporate Calender')
+    @section('judul', 'Personal Calender')
     @section('sub', 'BWA')
 
     @section('konten')
     <div class="row">
-        <div class="col-12 col-md-offset-2">
+        <div class="col-12">
             <div class=" mt-4">
-            <a href="{{ route('events.addcooporatecalender') }}" class="btn btn-primary mb-2">Tambah Acara</a>
-            <a href="{{ route('events.editcooporatecalender') }}" class="btn btn-warning mb-2">Edit / Delete Acara</a>
+            <a href="{{ route('addpersonalevent') }}" class="btn btn-primary mb-2">Tambah Acara</a>
+            <a href="{{ route('editpersonalevent') }}" class="btn btn-warning mb-2">Edit / Delete Acara</a>
             @if(session('success'))
                 <div class="alert alert-success">
                 {{session('success')}}
@@ -24,6 +24,7 @@
             @endif
 
             <!-- <a href="/DeleteCooporateCalender" class="btn btn-danger mb-2">Hapus Acara</a> -->
+            
             <div class="panel panel-default">
                 <div class="panel-body">
                     {!! $calendar->calendar() !!}
