@@ -39,11 +39,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
                         <label >Upload File(.pdf)</label>
-=======
                         <label >Upload File(.pdf) max:2040mb</label>
->>>>>>> aa18e1f0f788185e01f5f5e7686d36edfa30ac61
                         <input type="file" name="file" id="" class="form-control @error('file') is-invalid @enderror">
                         @error('file')
                             <div class="invalid-feedback">

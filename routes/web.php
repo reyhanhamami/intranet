@@ -96,9 +96,9 @@ Route::get('polling/pollingindex', 'PollingController@index')->name('polling.ind
 // route untuk education
 Route::get('education/productit', 'EducationController@productit')->name('education.productit');
 Route::get('education/cari', 'EducationController@cari')->name('education.cari');
-Route::get('education/openpdf', 'EducationController@openpdf')->name('openpdf');
 Route::get('education/addproductit', 'EducationController@addproductit')->name('education.addproductit');
 Route::post('education/addproductit', 'EducationController@storeproductit')->name('storeproductit');
+Route::get('education/openpdf/{education}', 'EducationController@openpdf');
 Route::get('education/{education}/editproductit', 'EducationController@editproductit');
 Route::patch('education/{education}', 'EducationController@updateproductit');
 Route::delete('education/{education}', 'EducationController@destroyproductit');

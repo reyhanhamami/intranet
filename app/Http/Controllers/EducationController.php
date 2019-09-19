@@ -18,21 +18,22 @@ class EducationController extends Controller
     // Untuk Education Produk IT 
     public function productit()
     {
-        // $education = Education::get();
         $masterdivisi = DB::table('education')->join('masterdivisi','education.divisi','masterdivisi.id_divisi')->select('education.*','masterdivisi.nama_divisi')->paginate(20);
-        // $first = DB::table('education')->pluck('file')->first();
-        // $path = 'public/assets/document/'.$first;
-        // return  response()->file($path);
         return view ('education.productit', compact('masterdivisi'));
+    }
+    public function openpdf(Education $education)
+    {
+        $masterdivisi = Masterdivisi::get();
+        $tes = $education->file;
+        $path_file = 'public/assets/document/'.$tes;
+        return response()->file($path_file);
     }
     public function cari(Request $request)
     {
-        
         // menangkap data pencarian
         $cari = $request->cari;
         $masterdivisi = DB::table('education')->where('judul','like',"%".$cari."%")->orWhere('nama_divisi','like','%'.$cari.'%')->join('masterdivisi','education.divisi','masterdivisi.id_divisi')->select('education.*','masterdivisi.nama_divisi')->paginate(20);
         // membuat query pencarian 
-        
         return view ('education.productit', compact('masterdivisi'));
     }
     public function addproductit()
