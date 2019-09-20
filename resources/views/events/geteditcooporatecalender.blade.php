@@ -15,7 +15,7 @@
                     @csrf
                         <div class="form-group  ">
                             <label for="acara" class="form-label  col-form-label">Nama Acara</label>
-                            <input id="acara" type="text" value="{{$event->title}}" class="form-control @error('title') is-invalid @enderror" placeholder="Acaranya apa?" name="title">
+                            <input id="acara" type="text" value="{{ old('title') ?? $event->title}}" class="form-control @error('title') is-invalid @enderror" placeholder="Acaranya apa?" name="title">
                             @error('title')
                             <div class="invalid-feedback">
                                 *Kolom acara wajib diisi
@@ -23,9 +23,9 @@
                             @enderror
                         </div>
                         <div class="form-group  ">
-                            <label for="foto" class="form-label d-block  col-form-label">Rubah Foto Acara? (Ukuran 447 width 401 height pixel)</label>
+                            <label for="foto" class="form-label d-block  col-form-label">Rubah Foto Acara?</label>
                             <img src='{{url("public/assets/cooporateevent/".$event->foto)}}' alt="gambar ngak ada" width="100" height="100"> <small>*Gambar sebelumnya</small>
-                            <input id="foto" type="file" value="{{$event->foto}}"  class="form-control @error('foto') is-invalid @enderror" name="foto">
+                            <input id="foto" type="file" value="{{old('foto') ?? $event->foto}}"  class="form-control @error('foto') is-invalid @enderror" name="foto">
                             @error('foto')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -34,11 +34,11 @@
                         </div>
                         <div class="form-group  ">
                             <label for="warna" class="form-label  col-form-label">Warna</label>
-                            <input id="warna" value="{{$event->color}}" type="color" class="form-control " name="color">
+                            <input id="warna" value="{{old('color') ?? $event->color}}" type="color" class="form-control " name="color">
                         </div>
                         <div class="form-group  ">
                             <label for="start-date" class="form-label  col-form-label">Dari tanggal</label>
-                            <input id="start-date" type="date" value="{{$event->start_date}}"  class="form-control @error('start_date') is-invalid @enderror" name="start_date">
+                            <input id="start-date" type="date" value="{{ old('start_date') ?? $event->start_date}}"  class="form-control @error('start_date') is-invalid @enderror" name="start_date">
                             @error('start_date')
                                 <div class="invalid-feedback">
                                 *Tanggal Wajib diisi
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group  ">
                             <label for="end-date" class="form-label  col-form-label">Sampai tanggal</label>
-                            <input id="end-date" type="date" value="{{$event->end_date}}" class="form-control @error('end_date') is-invalid @enderror" name="end_date">
+                            <input id="end-date" type="date" value="{{$event->end_date ?? old('end_date')}}" class="form-control @error('end_date') is-invalid @enderror" name="end_date">
                             @error('end_date')
                             <div class="invalid-feedback">
                                 *Tanggal wajib diisi
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group  ">
                             <label for="deskripsi" class="form-label  col-form-label">Deskripsi ringkas tentang acara</label>
-                            <textarea name="deskripsi" id="deskripsi" class="@error('deskripsi') is-invalid @enderror">{{$event->deskripsi}}</textarea>
+                            <textarea name="deskripsi" id="deskripsi" class="@error('deskripsi') is-invalid @enderror">{{old('deskripsi') ?? $event->deskripsi}}</textarea>
                             @error('deskripsi')
                             <div class="invalid-feedback">
                                 *deskripsi wajib diisi

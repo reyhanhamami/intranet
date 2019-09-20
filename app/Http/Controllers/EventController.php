@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Calendar;
 use App\Event;
 use File;
+use Image;
 
 class EventController extends Controller
 {
@@ -38,27 +39,34 @@ class EventController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=357,min_height=210,max_width=457,max_height=400',
+            'foto' => 'required|image|mimes:png,jpg,jpeg',
             'start_date' => 'required',
             'end_date' => 'required',
             'deskripsi' => 'required',
         ]);
+        // buat variabel untuk mengambil request dari form input file 
+        $image = $request->file('foto');
         
-        // simpan di variabel untuk request file
-        $foto = $request->file('foto');
+        // dikasih nama
+        $input['imagename'] = time().'.'.$image->getClientOriginalName();
 
-        // kasih nama untuk foto
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        // lokasi folder untuk foto yang sudah diresize 
+        $destinationPath = public_path('/assets/cooporateevent');
+        
+        // buat variabel baru untuk mengambil size aslinya
+        $img = Image::make($image->getRealPath());
+        // abis itu size aslinya di resize 
+        $img->resize(447, 400)->save($destinationPath.'/'.$input['imagename']);
 
-        // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/cooporateevent';
-        // pindahin tuh nama ke rumahnya
-        $foto->move($lokasi,$nama_foto);
+        // lokasi folder untuk menaruh size yang asli
+        $destinationPath = public_path('/assets/cooporateevent/realsize');
 
-
+        // pindahin foto ke lokasinya
+        $image->move($destinationPath, $input['imagename']);
+        
         Event::create([
             'title' => $request->title,
-            'foto' => $nama_foto,
+            'foto' => $input['imagename'],
             'color' => $request->color,
             'deskripsi' => $request->deskripsi,
             'url' => $request->url,
@@ -78,27 +86,43 @@ class EventController extends Controller
     public function update(Request $request, Event $event){
           $request->validate([
             'title' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=357,min_height=210,max_width=457,max_height=401',
+            'foto' => 'required|image|mimes:png,jpg,jpeg',
             'start_date' => 'required',
             'end_date' => 'required',
             'deskripsi' => 'required',
         ]);
         
-        // simpan di variabel untuk request file
-        $foto = $request->file('foto');
+         // buat variabel untuk mengambil request dari form input file 
+        $image = $request->file('foto');
+        
+        // dikasih nama
+        $input['imagename'] = time().'.'.$image->getClientOriginalName();
 
-        // kasih nama untuk foto
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        // lokasi folder untuk foto yang sudah diresize 
+        $destinationPath = public_path('/assets/cooporateevent');
+        
+        // buat variabel baru untuk mengambil size aslinya
+        $img = Image::make($image->getRealPath());
+        // abis itu size aslinya di resize 
+        $img->resize(447, 400)->save($destinationPath.'/'.$input['imagename']);
 
-        // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/cooporateevent';
-        // pindahin tuh nama ke rumahnya
-        $foto->move($lokasi,$nama_foto);
+        // lokasi folder untuk menaruh size yang asli
+        $destinationPath = public_path('/assets/cooporateevent/realsize');
+       
+        // pindahin foto ke lokasinya
+        $image->move($destinationPath, $input['imagename']);
+
+        $image_path = "public/assets/cooporateevent/$event->foto";
+        $image_path_real = "public/assets/cooporateevent/realsize/$event->foto";
+        // klo ditemuin hapus klo engak yaudah 
+        if(File::exists($image_path) and File::exists($image_path_real)){
+            File::delete($image_path,$image_path_real);
+        };
         
         Event::where('id_eventcooporate', $event->id_eventcooporate)
                 ->update([
                     'title' => $request->title,
-                    'foto' => $nama_foto,
+                    'foto' => $input['imagename'],
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'deskripsi' => $request->deskripsi,
@@ -110,9 +134,10 @@ class EventController extends Controller
     public function destroy(Event $event){
         // cari lokasi fotonya 
         $image_path = "public/assets/cooporateevent/$event->foto";
+        $image_path_real = "public/assets/cooporateevent/realsize/$event->foto";
         // klo ditemuin hapus klo engak yaudah 
-        if(File::exists($image_path)){
-            File::delete($image_path);
+        if(File::exists($image_path) and File::exists($image_path_real)){
+            File::delete($image_path,$image_path_real);
         };
         Event::destroy($event->id_eventcooporate);
         return redirect()->back()->with('delete','Acara '.$event->title.' berhasil dihapus');

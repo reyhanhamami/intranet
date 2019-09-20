@@ -59,6 +59,7 @@ Route::get('listemployee/listindex', 'ListemployeeController@index')->name('list
 Route::get('listemployee/addlistindex', 'ListemployeeController@addlist')->name('addlistemployee');
 Route::get('listemployee/cari', 'ListemployeeController@cari');
 Route::post('listemployee/addlistindex', 'ListemployeeController@store')->name('storelistemployee');
+Route::get('listemployee/detail/{listemployee}', 'ListemployeeController@detail');
 Route::get('listemployee/{listemployee}/editemployee', 'ListemployeeController@edit');
 Route::patch('listemployee/{listemployee}', 'ListemployeeController@update');
 Route::delete('listemployee/{listemployee}', 'ListemployeeController@destroy');

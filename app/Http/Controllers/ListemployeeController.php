@@ -29,6 +29,12 @@ class ListemployeeController extends Controller
 
         return view('listemployee.listindex', compact('join'));
     }
+    
+    public function detail(listemployee $listemployee)
+    {
+        return view('listemployee.detailemployee', compact('listemployee'));
+    }
+
     public function addlist()
     {
         // panggil data masterdivisi untuk looping pemilihan divisi
@@ -109,7 +115,7 @@ class ListemployeeController extends Controller
 
         return view('listemployee.editemployee',compact('masterdivisi','listemployee'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

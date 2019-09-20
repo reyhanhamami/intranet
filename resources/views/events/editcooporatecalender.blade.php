@@ -28,7 +28,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Acara</th>
-                                    <th scope="col">Foto</th>
+                                    <th scope="col">Klik foto untuk download foto</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col"><i class="fas fa-cogs"></i></th>
                                 </tr>
@@ -39,7 +39,9 @@
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$event->title}}</td>
                                     <td>
-                                    <img src=' {{url("public/assets/cooporateevent/".$event->foto)}}' alt="Gambar tidak ditemukan" width="100" height="100">
+                                    <a href='{{url("public/assets/cooporateevent/realsize/".$event->foto)}}' download>
+                                    <img src='{{url("public/assets/cooporateevent/realsize/".$event->foto)}}' alt="Gambar tidak ditemukan" width="100" height="100" download>
+                                    </a>
                                     </td>
                                     <td>{{$event->start_date}}</td>
                                     <td>

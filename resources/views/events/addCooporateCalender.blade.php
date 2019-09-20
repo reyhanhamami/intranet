@@ -22,7 +22,7 @@
                             @enderror
                         </div>
                         <div class="form-group  ">
-                            <label for="foto" class="form-label  col-form-label">Foto Acara (Ukuran 447 width 400 height pixel)</label>
+                            <label for="foto" class="form-label  col-form-label">Foto Acara </label>
                             <input id="foto" type="file"  class="form-control @error('foto') is-invalid @enderror" name="foto">
                             @error('foto')
                             <div class="invalid-feedback">
