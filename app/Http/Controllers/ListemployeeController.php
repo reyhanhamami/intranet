@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use File;
+use Image;
 
 class ListemployeeController extends Controller
 {
@@ -32,7 +33,8 @@ class ListemployeeController extends Controller
     
     public function detail(listemployee $listemployee)
     {
-        return view('listemployee.detailemployee', compact('listemployee'));
+        $join = DB::table('employee')->join('masterdivisi','employee.divisi','=','masterdivisi.id_divisi')->select('employee.*','masterdivisi.*')->get();
+        return view('listemployee.detailemployee', compact('listemployee','join'));
     }
 
     public function addlist()
@@ -62,7 +64,7 @@ class ListemployeeController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max_height=180',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=248,min_height=140',
             'divisi' => 'required',
             'jabatan' => 'required',
             'email' => 'required|email',
@@ -73,15 +75,23 @@ class ListemployeeController extends Controller
         $foto = $request->file('foto');
 
         // membuat nama berdasarkan waktu diupdolad dan nama aslinya 
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        $input['imagename'] = time()."-".$foto->getClientOriginalName();
 
         // nama folder tempat untuk upload 
-        $tujuan_upload = "public/assets/listemployee";
-        $foto->move($tujuan_upload,$nama_foto);
+        $tujuan_upload = public_path("/assets/listemployee");
+        
+        // ambil real pathnya 
+        $img = Image::make($foto->getRealPath());
+        
+        // trus di resize 
+        $img->crop(4318,2000)->resize(318,200)->save($tujuan_upload.'/'.$input['imagename']);
+        $tujuan_upload = public_path("/assets/listemployee/realsize");
+
+        $foto->move($tujuan_upload,$input['imagename']);
 
         Listemployee::create([
             'nama' => $request->nama,
-            'foto' => $nama_foto,
+            'foto' => $input['imagename'],
             'divisi' => $request->divisi,
             'jabatan' => $request->jabatan,
             'email' => $request->email,
@@ -127,7 +137,7 @@ class ListemployeeController extends Controller
     {   
         $request->validate([
             'nama' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=268,max_height=180',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=268,min_height=180',
             'divisi' => 'required',
             'jabatan' => 'required',
             'email' => 'required|email',
@@ -136,15 +146,31 @@ class ListemployeeController extends Controller
         // simpan data
         $foto = $request->file('foto');
         // kasih nama
-        $nama_foto = time().'-'.$foto->getClientOriginalName();  
+        $input['imagename'] = time().'-'.$foto->getClientOriginalName();  
         // taro dimana
-        $lokasi = 'public/assets/listemployee';
-        $foto->move($lokasi,$nama_foto);
+        $lokasi = public_path('/assets/listemployee');
+
+        // ambil real pathnya 
+        $img = Image::make($foto->getRealPath());
+
+        // crop dan resize 
+        $img->crop(318,200)->save($lokasi.'/'.$input['imagename']);
+
+        $lokasi = public_path('/assets/listemployee/realsize/');
+        $foto->move($lokasi,$input['imagename']);
+
+        // cari lokasinya dulu
+        $lokasifoto = "public/assets/listemployee/$listemployee->foto";
+        $lokasifotoreal = "public/assets/listemployee/realsize/$listemployee->foto";
+        // kasih kondisi jika ada datanya maka hapus 
+        if(File::exists($lokasifoto) and File::exists($lokasifotoreal)){
+            File::delete($lokasifoto, $lokasifotoreal);
+        }
 
         Listemployee::where('id_employee', $listemployee->id_employee)
             ->update([
                 'nama' => $request->nama,
-                'foto' => $nama_foto,
+                'foto' => $input['imagename'],
                 'divisi' => $request->divisi,
                 'jabatan' => $request->jabatan,
                 'email' => $request->email,
@@ -163,9 +189,10 @@ class ListemployeeController extends Controller
     {
         // cari lokasinya dulu
         $lokasifoto = "public/assets/listemployee/$listemployee->foto";
+        $lokasifotoreal = "public/assets/listemployee/realsize/$listemployee->foto";
         // kasih kondisi jika ada datanya maka hapus 
-        if(File::exists($lokasifoto)){
-            File::delete($lokasifoto);
+        if(File::exists($lokasifoto) and File::exists($lokasifotoreal)){
+            File::delete($lokasifoto, $lokasifotoreal);
         }
         Listemployee::destroy($listemployee->id_employee);
         return redirect()->back()->with('hapus','Data karyawan bernama ' . $listemployee->nama . ' berhasil dihapus');

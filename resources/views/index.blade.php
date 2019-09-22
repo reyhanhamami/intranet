@@ -11,48 +11,45 @@
         @if(Auth::user())
         @section('shortcut')
           <div class="float-right">
-                <div class="btn btn-primary">
-                      <a class="nav-link collapsed task" href="#" data-toggle="collapse" data-target="#MyTask" aria-expanded="true" aria-controls="MyTask">
-                        <span class="text-white "><i class="fab fa-fw fa-telegram-plane text-white"></i> Send Request</span>
+                <div class="btn btn-primary py-1">
+                      <a class="nav-link collapsed task" href="#" data-toggle="collapse" aria-expanded="true">
+                        <span class="text-white "><i class="fab fa-fw fa-telegram-plane text-white"></i> <span class="hilang">Send Request</span> </span>
                       </a>
                 </div>
           </div> <!-- end Request -->
          <!-- My task-->
             <div class="float-right mr-1">
-                <div class="btn btn-primary">
+                <div class="btn btn-primary py-1" >
                       <a class="nav-link collapsed task" href="#" data-toggle="collapse" data-target="#MyTask" aria-expanded="true" aria-controls="MyTask">
-                        <span class="text-white "><i class="fas fa-tasks text-white"></i> My Task</span>
+                        <span class="text-white "><i class="fas fa-tasks text-white"></i> <span class="hilang">My Task</span> </span>
                       </a>
                     <div class="">
                       <div id="MyTask" class="collapse">
                         <div class="collapse-inner rounded">
                           <h6 class="collapse-header mt-3">To do :</h6>
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="wireframes" checked>
+                          @if(session('success'))
+                            <div class="alert alert-success">{{session('success')}}</div>
+                          @endif
+                            <!-- looping todolist  -->
+                            @if(empty($tasks[0]))
+                            @elseif(Auth::user()->id == $tasks[0]->employee)
+                            @foreach($tasks as $task)
+                            <div class="form-check mb-3">
                               <label class="form-check-label" for="wireframes">
-                                  make wireframes for intranet
+                                  {{$task->nama_tasks}}
                               </label>
+                              <form action="tasks/{{$task->id_tasks}}" class="d-inline" method="post">
+                              @method('delete')
+                              @csrf
+                                <button class="btn btn-outline-danger"><i class="fas fa-times"></i></button>
+                              </form>
                             </div>
-                          <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="bwaid">
-                              <label class="form-check-label" for="bwaid">
-                                  follow up vendor web eksternal
-                              </label>
-                          </div>
-                          <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="intranet">
-                              <label class="form-check-label" for="intranet">
-                                  Build web for internal (intranet)
-                              </label>
-                          </div>
-                          <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="domain">
-                              <label class="form-check-label" for="domain">
-                                  Maintance domain and subdomain
-                              </label>
-                          </div>
-                        <button class="btn btn-primary mt-3 mb-3">Add</button>
-                        <button class="btn btn-danger mt-3 mb-3">Delete</button>
+                            @endforeach
+                            @elseif(Auth::user() != $tasks[0]->employee)
+                            @endif
+                            <!-- end looping  -->
+                        <a href="{{route('addtasks')}}" class="btn btn-dark mt-3 mb-3" style="cursor:pointer">New Tasks</a>
+                        <!-- <button class="btn btn-danger mt-3 mb-3">Delete</button> -->
                         
                         </div>
                       </div>
@@ -63,10 +60,10 @@
 
             <!-- formulir -->
             <div class="float-right mr-1">
-                <div class="btn btn-primary">
+                <div class="btn btn-primary py-1">
                     <div>
                     <a class="nav-link collapsed task" href="#" data-toggle="collapse" data-target="#Form" aria-expanded="true" aria-controls="Form">
-                      <span class="text-white"><i class='fas fa-clipboard'> </i> Formulir</span>
+                      <span class="text-white"><i class='fas fa-clipboard'> </i> <span class="hilang">Formulir</span></span>
                     </a>
                     </div>
                     <div>
@@ -96,7 +93,7 @@
 
         @section('konten')  
         <!-- Pengumuman -->
-           <div class="bd-example row mb-5 card shadow" style="clear:both !important;">
+           <div class="bd-example row mb-5 card shadow">
           <div class="col-md-12 " style="padding-right:0px !important;">
             <div id="carouselpengumuman" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">

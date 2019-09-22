@@ -48,7 +48,7 @@ class EventController extends Controller
         $image = $request->file('foto');
         
         // dikasih nama
-        $input['imagename'] = time().'.'.$image->getClientOriginalName();
+        $input['imagename'] = time().'-'.$image->getClientOriginalName();
 
         // lokasi folder untuk foto yang sudah diresize 
         $destinationPath = public_path('/assets/cooporateevent');
@@ -96,7 +96,7 @@ class EventController extends Controller
         $image = $request->file('foto');
         
         // dikasih nama
-        $input['imagename'] = time().'.'.$image->getClientOriginalName();
+        $input['imagename'] = time().'-'.$image->getClientOriginalName();
 
         // lokasi folder untuk foto yang sudah diresize 
         $destinationPath = public_path('/assets/cooporateevent');

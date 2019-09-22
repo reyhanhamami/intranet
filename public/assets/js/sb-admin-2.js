@@ -17,6 +17,18 @@
     };
   });
 
+// hilang toggled ketika ukuran layar 768 
+  $(function () {
+    $(window).bind("resize", function () {
+      console.log($(this).width())
+      if ($(this).width() > 768) {
+        $('.hilangtoggled').removeClass('toggled').addClass('')
+      }
+    }).trigger('resize');
+  })
+
+ 
+
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
   $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
     if ($(window).width() > 768) {

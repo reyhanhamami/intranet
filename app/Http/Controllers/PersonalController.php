@@ -6,7 +6,7 @@ use App\personal;
 use Illuminate\Http\Request;
 use Calendar;
 use File;
-
+use Image;
 
 class PersonalController extends Controller
 {
@@ -49,17 +49,27 @@ class PersonalController extends Controller
         $foto = $request->file('foto');
 
         // kasih nama untuk foto
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        $input['imagename'] = time()."-".$foto->getClientOriginalName();
 
-        // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/personalevent';
-        // pindahin tuh nama ke rumahnya
-        $foto->move($lokasi,$nama_foto);
+        // kasih rumah untuk nyimpen nama foto yang di resezi 
+        $lokasi = public_path('/assets/personalevent');
+
+        // ambil real size imagenya
+        $img = Image::make($foto->getRealPath());
+
+        // trus di resize 
+        $img->resize(447,400)->save($lokasi."/".$input['imagename']);
+
+        // kasih lokasi untuk naruh file dengan size aslinya
+        $lokasi = public_path('/assets/personalevent/realsize');
+
+        // pindahin tuh nama ke rumahnya yang real size
+        $foto->move($lokasi,$input['imagename']);
 
 
         Personal::create([
             'title' => $request->title,
-            'foto' => $nama_foto,
+            'foto' => $input['imagename'],
             'color' => $request->color,
             'deskripsi' => $request->deskripsi,
             'url' => $request->url,
@@ -86,28 +96,39 @@ class PersonalController extends Controller
             'deskripsi' => 'required',
         ]);
         
-        // cari lokasi fotonya 
-        $image_path = "public/assets/personalevent/$personal->foto";
-        // klo ditemuin hapus klo engak yaudah 
-        if(File::exists($image_path)){
-            File::delete($image_path);
-        };
         
         // simpan di variabel untuk request file
         $foto = $request->file('foto');
-
+        
         // kasih nama untuk foto
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        $input['imagename'] = time()."-".$foto->getClientOriginalName();
+        
+        // lokasi untuk foto yang sudah di resize
+        $lokasi = public_path('assets/personalevent');
+
+        // ambil real pathnya
+        $img = Image::make($foto->getRealPath());
+
+        // trus di resize
+        $img->resize(447,400)->save($lokasi."-".$input['imagename']);
 
         // kasih rumah untuk nyimpen nama 
-        $lokasi = 'public/assets/personalevent';
+        $lokasi = 'public/assets/personalevent/realsize';
         // pindahin tuh nama ke rumahnya
-        $foto->move($lokasi,$nama_foto);
+        $foto->move($lokasi,$input['imagename']);
         
+        // cari lokasi fotonya 
+        $image_path = "public/assets/personalevent/$personal->foto";
+        $image_pathreal = "public/assets/personalevent/realsize/$personal->foto";
+        // klo ditemuin hapus klo engak yaudah 
+        if(File::exists($image_path) and File::exists($image_pathreal)){
+            File::delete($image_path, $image_pathreal);
+        };
+       
         Personal::where('id_eventpersonal', $personal->id_eventpersonal)
                 ->update([
                     'title' => $request->title,
-                    'foto' => $nama_foto,
+                    'foto' => $input['imagename'],
                     'start_date' => $request->start_date,
                     'end_date' => $request->end_date,
                     'deskripsi' => $request->deskripsi,
@@ -119,9 +140,10 @@ class PersonalController extends Controller
     public function destroy(Personal $personal){
         // cari lokasi fotonya 
         $image_path = "public/assets/personalevent/$personal->foto";
+        $image_pathreal = "public/assets/personalevent/realsize/$personal->foto";
         // klo ditemuin hapus klo engak yaudah 
-        if(File::exists($image_path)){
-            File::delete($image_path);
+        if(File::exists($image_path) and File::exists($image_pathreal)){
+            File::delete($image_path, $image_pathreal);
         };
         Personal::destroy($personal->id_eventpersonal);
         return redirect()->back()->with('delete','Acara '.$personal->title.' berhasil dihapus');

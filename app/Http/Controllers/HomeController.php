@@ -9,6 +9,8 @@ use App\Pencerahan;
 use App\mastertype;
 use App\Pengumuman;
 use App\Personal;
+use App\Tasks;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,9 @@ class HomeController extends Controller
         // panggil data personal event dan ambil juga id urutan pertamanya
         $personalevent = Personal::paginate(5);
         $personaleventfirst = DB::table('eventpersonal')->orderBy('id_eventpersonal', 'asc')->pluck('id_eventpersonal')->first();
-
-        return view('index', compact('events' , 'mastertype','eventfirst', 'pengumuman','pengumumanfirst', 'personalevent','personaleventfirst'));
+        // panggil data tasks join user and where employee.tasks = id.user
+        $tasks = DB::table('tasks')->join('users', 'tasks.employee', '=', 'users.id')->select('tasks.*', 'users.*')->get();
+        
+        return view('index', compact('events' , 'mastertype','eventfirst', 'pengumuman','pengumumanfirst', 'personalevent','personaleventfirst', 'tasks'));
     }
 }

@@ -67,7 +67,7 @@
                     </a>
                     @endforeach
                     <!-- end looping   -->
-                    <div class="btn btn-info btn-sm col-1 mt-3">Jumlah data : {{$masterdivisi->total()}} </div>
+                    <div class="btn btn-info btn-sm-6 col-md-2 col-xl-1 mt-3">Jumlah data : {{$masterdivisi->total()}} </div>
                     {{$masterdivisi->links()}}
                   </ul>
                   

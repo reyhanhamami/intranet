@@ -33,9 +33,12 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Acara</th>
-                                    <th scope="col">Foto</th>
+                                    <th scope="col">klik untuk download foto</th>
                                     <th scope="col">Tanggal</th>
+                                    @if(!Auth::user())
+                                    @elseif(Auth::user()->name == 'admin')
                                     <th scope="col"><i class="fas fa-cogs"></i></th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,9 +47,13 @@
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$person->title}}</td>
                                     <td>
-                                    <img src=' {{url("public/assets/personalevent/".$person->foto)}}' alt="Gambar tidak ditemukan" width="100" height="100">
+                                    <a href='{{url("public/assets/personalevent/realsize/".$person->foto)}}' download>
+                                        <img src=' {{url("public/assets/personalevent/realsize/".$person->foto)}}' alt="Gambar tidak ditemukan" width="100" height="100">
+                                    </a>
                                     </td>
                                     <td>{{$person->start_date}}</td>
+                                    @if(!Auth::user())
+                                    @elseif(Auth::user()->name == 'admin')
                                     <td>
                                         <a href="{{$person->id_eventpersonal}}/geteditpersonalevent" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                                         <form action="{{$person->id_eventpersonal}}" method="post" class="d-inline">
@@ -55,6 +62,7 @@
                                             <button  class="btn btn-danger btn-sm " type="submit"><i class="fas fa-trash"></i> hapus</button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                                 </tbody>

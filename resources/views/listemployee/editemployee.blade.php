@@ -21,7 +21,7 @@
                         @enderror('nama')
                     </div>
                     <div class="form-group">
-                        <label >Upload Foto Karyawan ukuran (268pixel x 180pixel)</label>
+                        <label >Upload Foto Karyawan ukuran (rasio 2 : 1, Best resolution 318x200px)</label>
                         <!-- <img src="../public/assets/listemployee/{{$listemployee->foto}}" alt=""> -->
                         <input type="file" name="foto" id=""  class="form-control @error('foto') is-invalid @enderror">
                         @error('foto')

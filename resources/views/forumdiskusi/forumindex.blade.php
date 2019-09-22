@@ -9,6 +9,7 @@
     @section('konten')
     <div class="row">
         <div class="col-12">
+        <h4>Sample design for discusion...</h4>
             <table class="table table-striped">
             <thead>
                 <tr>

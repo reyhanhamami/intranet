@@ -11,28 +11,23 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
 
 // route untuk login
-// Route::middleware('guest')->group(function(){
     Route::get('login', 'loginController@getLogin')->name('login');
     Route::post('login', 'loginController@login')->name('postLogin');
-// });
+
 
 // route untuk logout
 Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth');
 
 
 // route untuk home dashboard
-// Route::middleware('auth')->group(function(){
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::get('/home', 'HomeController@index')->name('dashboard');
-// });
+
 
 // route untuk calender cooporate
-// Route::middleware('auth')->group(function (){
+
     Route::get('/events/cooporatecalender', 'EventController@index')->name('events.cooporatecalender');
     Route::get('/events/addcooporatecalender', 'EventController@add')->name('events.addcooporatecalender');
     Route::post('/events/addcooporatecalender', 'EventController@store')->name('events.storecooporatecalender');
@@ -40,7 +35,7 @@ Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth
     Route::get('events/{event}/geteditcooporatecalender', 'EventController@getedit');
     Route::patch('events/{event}', 'EventController@update');
     Route::delete('events/{event}', 'EventController@destroy');
-// });
+
 // untuk calender personal 
     Route::get('/personalevent/personalevent', 'PersonalController@index')->name('personalevent');
     Route::get('/personalevent/addpersonalevent', 'PersonalController@add')->name('addpersonalevent');
@@ -52,7 +47,7 @@ Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth
 
 // route untuk helpdesk
 Route::get('/helpdesk/helpindex', 'helpdeskController@index')->name('helpdesk.index');
-// ->middleware('auth');
+
 
 // route untuk list employee
 Route::get('listemployee/listindex', 'ListemployeeController@index')->name('listemployee');
@@ -63,7 +58,7 @@ Route::get('listemployee/detail/{listemployee}', 'ListemployeeController@detail'
 Route::get('listemployee/{listemployee}/editemployee', 'ListemployeeController@edit');
 Route::patch('listemployee/{listemployee}', 'ListemployeeController@update');
 Route::delete('listemployee/{listemployee}', 'ListemployeeController@destroy');
-// ->middleware('auth');
+
 
 // route untuk artikel
 Route::get('artikel/artikelindex', 'ArtikelController@index')->name('artikel.index');
@@ -72,27 +67,30 @@ Route::post('artikel/addartikelindex', 'ArtikelController@store')->name('storear
 Route::get('artikel/{artikel}/editartikel', 'ArtikelController@edit')->name('editartikel');
 Route::patch('artikel/{artikel}', 'ArtikelController@update');
 Route::delete('artikel/{artikel}', 'ArtikelController@destroy');
-// ->middleware('auth');
+
 
 // route untuk wiki
 Route::get('wiki/wikiindex', 'WikiController@index')->name('wiki.index');
-// ->middleware('auth');
+
 
 // route untuk forum diskusi
 Route::get('forumdiskusi/forumindex', 'ForumdiskusiController@index')->name('forum.index');
-// ->middleware('auth');
 
 // route untuk tasks
 Route::get('tasks/tasksindex', 'TasksController@index')->name('tasks.index');
-// ->middleware('auth');
+Route::get('tasks/add', 'TasksController@add')->name('addtasks');
+Route::post('tasks/add', 'TasksController@store')->name('storetasks');
+Route::delete('tasks/{tasks}', 'TasksController@destroy');
+
+
 
 // route untuk project
 Route::get('projects/projectsindex', 'ProjectsController@index')->name('projects.index');
-// ->middleware('auth');
+
 
 // route untuk polling
 Route::get('polling/pollingindex', 'PollingController@index')->name('polling.index');
-// ->middleware('auth');
+
 
 // route untuk education
 Route::get('education/productit', 'EducationController@productit')->name('education.productit');
@@ -103,7 +101,7 @@ Route::get('education/openpdf/{education}', 'EducationController@openpdf');
 Route::get('education/{education}/editproductit', 'EducationController@editproductit');
 Route::patch('education/{education}', 'EducationController@updateproductit');
 Route::delete('education/{education}', 'EducationController@destroyproductit');
-// ->middleware('auth');
+
 
 // route untuk pengumuman 
 Route::get('pengumuman/pengumumanindex', 'PengumumanController@index')->name('pengumuman');

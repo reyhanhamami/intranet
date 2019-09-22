@@ -1973,6 +1973,12 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
+@media(max-width: 597px) {
+  .hilang {
+    display: none !important;
+  }
+}
+
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     display: block;

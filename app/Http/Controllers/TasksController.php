@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\tasks;
+use App\User;
+use App\masterdivisi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
 {
@@ -14,7 +17,20 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('tasks.tasksindex');
+        $user = User::get();
+        // ambil data join antara tasks dan user 
+        $join = DB::table('tasks')
+                ->where('nama_divisi','=','Teknologi Informasi')
+                ->join('users', 'tasks.employee','=','users.id')
+                ->join('masterdivisi','users.divisi','=','masterdivisi.id_divisi')
+                ->select('tasks.nama_tasks','users.*','masterdivisi.nama_divisi')->get();
+        // dd($join);
+                return view('tasks.tasksindex', compact('user','join'));
+    }
+
+    public function add(Request $request)
+    {
+        return view('tasks.addtasks');
     }
 
     /**
@@ -35,7 +51,12 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_tasks' => 'required',
+        ]);
+        
+        Tasks::create($request->all());
+        return redirect()->route('dashboard')->with('success','tugas baru sudah ditambahkan');
     }
 
     /**
@@ -80,6 +101,7 @@ class TasksController extends Controller
      */
     public function destroy(tasks $tasks)
     {
-        //
+        Tasks::destroy('id_tasks' , $tasks->id_tasks);
+        return redirect()->back();
     }
 }

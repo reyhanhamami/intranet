@@ -9,7 +9,7 @@
         @section('konten')
             <div class="row">
                 <div class="col-12">
-                    <!-- <h1>Tes</h1> -->
+                    <h1 class="text-muted">Coming Soon......</h1>
                 </div>
             </div>
         @endsection('konten')
