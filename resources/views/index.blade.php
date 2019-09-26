@@ -105,7 +105,7 @@
                  <!-- looping pengumuman  -->
                  @foreach($pengumuman as $pengumumans)
                 <div @if($pengumumans->id_pengumuman == $pengumumanfirst) class="carousel-item active" @else class="carousel-item" @endif>
-                  <div class="d-none d-md-block py-3">
+                  <div class="d-md-block py-3">
                     <h4 class="text-center"><i class="fas fa-newspaper"></i> Pengumuman</h4>
                     <p class="text-center mb-4" >{{ str_limit(strip_tags($pengumumans->deskripsi), 50)}}  <a href="{{ route('pengumuman').'#'.$pengumumans->id_pengumuman}}">lihat selengkapnya</a></p>
                   </div>
@@ -126,7 +126,7 @@
             </div>
           </div> 
         <!-- end pengumuman  -->
-    
+
         <!-- section 2 -->
         <!-- Carousel slider berita2 bwa yang sudah terjadi -->
         <div class="bd-example row">
@@ -144,7 +144,7 @@
                 <div class="overflow">
                   <img src="{{ url('public/assets/cooporateevent/'.$event->foto)}}" class="d-block w-100 full-image " alt="Gambar Hilang">
                 </div>
-                  <div class="carousel-caption font-weight-bold black  d-none d-md-block">
+                  <div class="carousel-caption font-weight-bold black  d-md-block">
                     <h2 style="background:white;opacity:0.7;border-radius:5px;">{{$event->title}}</h2>
                     <p class="text-left" style="background:white;opacity:0.7;border-radius:5px;">{{str_limit(strip_tags($event->deskripsi),100)}}</p>
                     <a href="{{$event->url}}" class="btn btn-info ">Lihat selengkapnya</a>
@@ -208,7 +208,7 @@
                  <!-- looping quran/hadist/qoutes  -->
                 @foreach($mastertype as $master)
                 <div @if($master->id_pencerahan == '11') echo class="carousel-item active" @else class="carousel-item" @endif>
-                  <div class="d-none d-md-block py-3">
+                  <div class="d-md-block py-3">
                     <h4 class="text-center"><i @if($master->type == '1') class="fas fa-quran" @elseif($master->type == '2') class="fas fa-book-reader" @else class="fab fa-battle-net" @endif></i> {{$master->nama}}</h4>
                     <p class="text-center mx-auto mb-4" style="width:70%"><q>{{$master->deskripsi}}</q></p>
                   </div>
@@ -275,7 +275,7 @@
                   <div class="overflow">
                     <img src="{{ url('public/assets/personalevent/'.$personal->foto)}}" class="d-block w-100 full-image " alt="Gambar Hilang">
                   </div>
-                    <div class="carousel-caption font-weight-bold black  d-none d-md-block">
+                    <div class="carousel-caption font-weight-bold black  d-md-block">
                       <h2 style="background:white;opacity:0.5;border-radius:5px;">{{$personal->title}}</h2>
                       <p class="text-left" style="background:white;opacity:0.5;border-radius:5px;">{{str_limit(strip_tags($personal->deskripsi), 50)}}</p>
                       <a href="{{$personal->url}}" class="btn btn-info ">Lihat selengkapnya</a>

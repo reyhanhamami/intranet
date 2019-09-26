@@ -14,14 +14,15 @@ class User extends Authenticatable
 {
     use Notifiable, AuthenticableTrait;
 
+    protected $table = 'SysSec_users';
+    protected $connection = 'sqlsrv';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-   
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'pswd',
     ];
 
     /**
@@ -30,25 +31,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'pswd', 'remember_token',
     ];
 
     // syarat agar md5 dapat digunakan. 
     public function getAuthPassword()
     {
-        return bcrypt($this->password);
+        return bcrypt($this->pswd);
     }
     protected function credentials(Request $request)
     {
         return [
             $this->email() => $request->get('email'),
-            'password' => md5($request->get('password'))
+            'pswd' => md5($request->get('pswd'))
         ];
     }
 
     public function validateCredentials(UserContract $user, array $credentials)
     {
-        $plain = $credentials['password'];
+        $plain = $credentials['pswd'];
         return $this->hasher->check($plain, $user->getAuthPassword());
     }
 }

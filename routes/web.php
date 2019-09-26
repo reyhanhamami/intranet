@@ -22,8 +22,8 @@ Route::get('logout', 'loginController@logout')->name('logout')->middleware('auth
 
 
 // route untuk home dashboard
-    Route::get('/', 'HomeController@index')->name('dashboard');
-    Route::get('/home', 'HomeController@index')->name('dashboard');
+    Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth');
+    Route::get('/home', 'HomeController@index')->name('dashboard')->middleware('auth');
 
 
 // route untuk calender cooporate

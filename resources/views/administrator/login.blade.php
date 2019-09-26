@@ -47,10 +47,10 @@
                   <form class="user" method="post" action="{{ route('login')}}">
                   @csrf
                     <div class="form-group">
-                      <input type="text" @if(Auth::viaRemember()) value="{{Auth::user()->email}}" @endif class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autofocus required>
+                      <input type="text" class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" autofocus required>
                     </div>
                     <div class="form-group">
-                      <input type="password" @if(Auth::viaRemember()) value="{{Auth::user()->password}}" @endif name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" name="pswd" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

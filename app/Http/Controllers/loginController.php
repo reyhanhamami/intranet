@@ -36,14 +36,14 @@ class loginController extends Controller
         $remember = $request->remember;
         $credentials = [
             'email' => $request->email,
-            'password' => md5($request->password)
+            'pswd' => md5($request->pswd)
         ];
         if (Auth::Attempt($credentials, $remember)){
             return redirect()->intended(route('dashboard'));
         }
         
      
-        return redirect()->back()->with('gagal', 'Password atau Email anda salah!!')->withInput($request->only('email', 'password'));
+        return redirect()->back()->with('gagal', 'pswd atau Email anda salah!!')->withInput($request->only('email', 'pswd'));
     }
 
     // protected function credentials(Request $request)

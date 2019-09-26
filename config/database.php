@@ -40,7 +40,7 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
+            'driver' => env('DB_CONNECTION'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
@@ -68,12 +68,12 @@ return [
         ],
 
         'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'driver' => env('DB_CONNECTION_user'),
+            'host' => env('DB_HOST_user', 'localhost'),
+            'port' => env('DB_PORT_user', '1433'),
+            'database' => env('DB_DATABASE_user', 'forge'),
+            'username' => env('DB_USERNAME_user', 'forge'),
+            'password' => env('DB_PASSWORD_user', ''),
             'charset' => 'utf8',
             'prefix' => '',
         ],
