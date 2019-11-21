@@ -14,7 +14,12 @@ class ForumdiskusiController extends Controller
      */
     public function index()
     {
-        return view('forumdiskusi.forumindex');
+        $forum = Forum::paginate(20);
+        return view('forumdiskusi.forumindex', compact('forum'));
+    }
+    public function post()
+    {
+        return view('forumdiskusi.postdiskusi');
     }
 
     /**
@@ -35,7 +40,21 @@ class ForumdiskusiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $request->validate([
+            'topic_diskusi' => 'required',
+            'label_diskusi' => 'required',
+            'deskripsi_diskusi' => 'required'
+        ]);
+        $tes = $request->label_diskusi;
+        $data['label_diskusi'] = implode($tes, ' ');
+        $data['tanggal_diskusi'] = date("d M Y");
+        Forum::create($data);
+        return redirect()->route('forum.index')->with('success', 'Topic discussion has created!!');
+    }
+    public function topic(forum $forum)
+    {
+        return view('forumdiskusi.topic', compact('forum'));
     }
 
     /**

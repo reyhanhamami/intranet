@@ -14,9 +14,9 @@ class WikiController extends Controller
      */
     public function index()
     {
-        $wiki = Wiki::get();
-        dd($wiki);
-        // return view('wiki.wikiindex');
+        // $wiki = Wiki::get();
+        // dd($wiki);
+        return view('wiki.wikiindex');
     }
 
     /**

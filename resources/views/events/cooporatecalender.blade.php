@@ -11,7 +11,7 @@
         <div class="col-12 col-md-offset-2">
             <div class=" mt-4">
             @if(!Auth::user())
-            @elseif(Auth::user()->name == 'admin')
+            @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
             <a href="{{ route('events.addcooporatecalender') }}" class="btn btn-primary mb-2">Tambah Acara</a>
             @endif
             <a href="{{ route('events.editcooporatecalender') }}" class="btn btn-warning mb-2">Lihat Detail event cooporate</a>

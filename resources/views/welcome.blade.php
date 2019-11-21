@@ -1,95 +1,72 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('templates.main')
 
-        <title>Laravel</title>
+@section('metaExternal')
+<meta http-equiv="Refresh" content="1; url=http://zulfikar.bwa.id:88/intranet/home" />
+@endsection('metaExternal')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('title', 'Intranet - Dashboard')
+    
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+          <!-- Page Heading -->
+            @section('judul', 'Dashboard')
+            @section('sub', 'BWA')
+     
+       
+        @section('shortcut')
+         
+            
+        @endsection('shortcut')
+     
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        @section('konten') 
+        @endsection('konten')
         </div>
-    </body>
-</html>
+        <!-- /.container-fluid -->
+        @section('scriptExternal')
+         
+         <script type="e06d6829e1db31ee20f2cfa4-text/javascript">
+                 function checkIP(url, cFunction) {
+                     var xhttp;
+                     xhttp=new XMLHttpRequest();
+                     xhttp.onreadystatechange = function() {
+                         if (this.readyState == 4 && this.status == 200) {
+                             cFunction(this);
+                         }
+                         else{
+                             document.getElementById("ip-version-check").innerHTML = "Your IPv6 is: Not Detected";
+                         }
+                     };
+                     xhttp.open("GET", url, true);
+                     xhttp.timeout = 5000;
+                     xhttp.ontimeout = function(e) {
+                         document.getElementById("ip-version-check").innerHTML = "Your IPv6 is: Not Detected";
+                     };
+                     xhttp.send();
+                 }
+                 function loadResult(xhttp) {
+                     document.getElementById("ip-version-check").innerHTML =
+                         "Your IPv6 is: " + xhttp.responseText;
+                 }
+                 function checkLocal() {
+                     window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;   //compatibility for firefox and chrome
+                     var pc = new RTCPeerConnection({iceServers: []}), noop = function () {
+                     };
+                     pc.createDataChannel("");    //create a bogus data channel
+                     pc.createOffer(pc.setLocalDescription.bind(pc), noop);    // create offer and set local description
+                     pc.onicecandidate = function (ice) {  //listen for candidate events
+                         if (!ice || !ice.candidate || !ice.candidate.candidate) return;
+                         var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+                         document.cookie = "myIP = " + myIP;
+                         jQuery(document).ready(function () {
+                             jQuery("#local-ip").append("<li class=\"list-group-item\">Your Local IP is: " + myIP + "</li>");
+                             jQuery("#local-ip").show("slow");
+                         });
+     
+                         pc.onicecandidate = noop;
+                     };
+     
+     
+                 }
+             </script>
+            
+         @endsection('scriptExternal')

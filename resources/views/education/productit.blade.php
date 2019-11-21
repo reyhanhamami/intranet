@@ -1,15 +1,15 @@
 @extends('templates.main')
-@section('title', 'Intranet - Product IT')
+@section('title', 'Intranet - Document')
 
 <!-- start body -->
 <div class="container-fluid">
-    @section('judul', 'Product IT')
+    @section('judul', 'Document')
     @section('sub', 'BWA')
 
     @section('konten')
         @section('konten')
         @if(!Auth::user())
-        @elseif(Auth::user()->name == 'admin')
+        @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
           <a href="{{route('education.addproductit')}}" class="btn btn-primary mb-2"><i class="fas fa-plus-square"></i> Tambah Education tentang IT</a>
         @else
         @endif
@@ -54,7 +54,7 @@
                     @foreach($masterdivisi as $divisi)
                     <a href="@if($masterdivisi == NULL) @else openpdf/{{$divisi->id_education}} @endif" target="_blank"><li class="list-group-item">{{$i++}}.@if($masterdivisi == NULL) Data tidak ditemukan @else{{$divisi->judul}} @endif | <span>Divisi @if($masterdivisi == NULL) @else{{$divisi->nama_divisi}}@endif</span>
                       @if(!Auth::user())
-                      @elseif(Auth::user()->name == 'admin')
+                      @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                       <form action="@if($masterdivisi == NULL) @else{{$divisi->id_education}} @endif" method="post" class="d-inline">
                       @method('delete')
                       @csrf

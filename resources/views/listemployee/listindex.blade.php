@@ -8,7 +8,7 @@
     @section('sub', 'BWA')
         @section('konten')
           @if(!Auth::user())
-          @elseif(Auth::user()->name == 'admin')
+          @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
             <a href="{{route('addlistemployee')}}" class="btn btn-primary mb-2"><i class="fas fa-plus-square"></i> Tambah data karyawan</a>
           @else
           @endif
@@ -53,7 +53,7 @@
                       <p class="h6"><i class="fas fa-mobile"></i> {{$joins->handphone}}</p>
                       <a href="detail/{{$joins->id_employee}}" class="btn btn-primary "><i class="fas fa-clipboard-list text-white"> Detail</i></a>
                       @if(!Auth::user())
-                      @elseif(Auth::user()->name == 'admin')
+                      @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                       <form action="{{$joins->id_employee}}" method="post" class="d-inline">
                       @method('delete')
                       @csrf

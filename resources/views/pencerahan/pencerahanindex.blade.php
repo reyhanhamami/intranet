@@ -8,7 +8,7 @@
 
     @section('konten')
     @if(!Auth::user())
-    @elseif(Auth::user()->name == 'admin')
+    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
     <a href="{{route('addpencerahan')}}" class="btn btn-primary mb-2"><i class="fas fa-plus-square"></i> Tambah Quran/Hadist/Qoutes</a>
     @else
     @endif
@@ -28,7 +28,7 @@
             <div class="card" id="card1">
                 <div class="card-header">
                     @if(!Auth::user())
-                    @elseif(Auth::user()->name == 'admin')
+                    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                         <form action="{{$cerah->id_pencerahan}}" class="d-inline" method="post">
                         @method('delete')
                         @csrf

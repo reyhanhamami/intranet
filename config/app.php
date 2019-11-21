@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://zulfikar.bwa.id:88/intranet/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +165,7 @@ return [
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        jjsquady\MikrotikApi\MikrotikServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -231,6 +232,8 @@ return [
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,     
         'Image' => Intervention\Image\Facades\Image::class,
+        'Mikrotik' => jjsquady\MikrotikApi\Facades\MikrotikFacade::class,
+        'Interfaces' => \jjsquady\MikrotikApi\Entity\InterfaceEntity::class,
     ],
 
 ];

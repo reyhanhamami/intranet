@@ -8,7 +8,7 @@
 
     @section('konten')
     @if(!Auth::user())
-    @elseif(Auth::user()->name == 'admin')
+    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
     <a href="{{route('addpengumuman')}}" class="btn btn-primary mb-2"><i class="fas fa-plus-square"></i> Tambah pengumuman</a>
     @else
     @endif
@@ -34,7 +34,7 @@
             <div class="card" id="{{$divisi->id_pengumuman}}">
                 <div class="card-header">
                     @if(!Auth::user())
-                    @elseif(Auth::user()->name == 'admin')
+                    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                     <form action="{{$divisi->id_pengumuman}}" method="post" class="d-inline">
                       @method('delete')
                       @csrf

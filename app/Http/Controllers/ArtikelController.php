@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\artikel;
 use Illuminate\Http\Request;
 use File;
+use Image;
 
 class ArtikelController extends Controller
 {
@@ -43,7 +44,7 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=358,max_height=250',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:min_width=308,min_height=200',
             'tanggal' => 'required',
             'deskripsi' => 'required'
         ]);
@@ -52,16 +53,24 @@ class ArtikelController extends Controller
         $foto = $request->file('foto');
 
         // namain dulu 
-        $nama_foto = time()."-".$foto->getClientOriginalName();
+        $input['imagename'] = time()."-".$foto->getClientOriginalName();
 
         // mau ditaro mana
-        $folder = 'public/assets/artikel';
-        $foto->move($folder,$nama_foto);
+        $folder = public_path('/assets/artikel');
+        
+        // ambil real pathnya 
+        $img = Image::make($foto->getRealPath());
+        
+        // trus di resize 
+        $img->crop(658,530)->resize(358,250)->save($folder.'/'.$input['imagename']);
+        $folder = public_path("/assets/artikel/realsize");
+
+        $foto->move($folder,$input['imagename']);
 
 
         Artikel::create([
             'judul' => $request->judul,
-            'foto' => $nama_foto,
+            'foto' => $input['imagename'],
             'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi
         ]);
@@ -77,6 +86,10 @@ class ArtikelController extends Controller
     public function show(artikel $artikel)
     {
         //
+    }
+    public function detail(artikel $artikel) 
+    {
+        return view('artikel.detailartikel', compact('artikel'));
     }
 
     /**
@@ -99,32 +112,44 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, artikel $artikel)
     {
+        $data = $request->except(['_method','_token']);
         $request->validate([
             'judul' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|dimensions:max_width=358,max_height=250',
+            'foto' => 'image|mimes:jpeg,png,jpg|dimensions:max_width=358,max_height=250',
             'tanggal' => 'required',
             'deskripsi' => 'required'
         ]);
 
-        // kasih variabel foto untuk menyimpan hasil inputan
+        if($request->hasFile('foto')){
+        // cari lokasi foto
+        $image_path = "public/assets/artikel/$artikel->foto";
+
+        // kasih kondisi jika ada fotonya hapus 
+        if(File::exists($image_path)){
+            File::delete($image_path);
+        };
+
+        // simpan foto di variabel foto 
         $foto = $request->file('foto');
 
-        // kasih nama dulu
-        $nama_foto = time().'-'.$foto->getClientOriginalName();
+        // namain dulu 
+        $input['imagename'] = time()."-".$foto->getClientOriginalName();
 
-        // kasih tempat untuk naruh fotonya
-        $lokasi = 'public/assets/artikel';
+        // mau ditaro mana
+        $folder = public_path('/assets/artikel');
+        
+        // ambil real pathnya 
+        $img = Image::make($foto->getRealPath());
+        
+        // trus di resize 
+        $img->crop(658,530)->resize(358,250)->save($folder.'/'.$input['imagename']);
+        $folder = public_path("/assets/artikel/realsize");
 
-        // pindahin namanya di lokasi yang tepat
-        $foto->move($lokasi,$nama_foto);
+        $foto->move($folder,$input['imagename']);
+        $data['foto'] = $input['imagename'];
+        }
 
-        Artikel::where('id_artikel', $artikel->id_artikel)
-            ->update([
-                'judul' => $request->judul,
-                'foto' => $nama_foto,
-                'tanggal' => $request->tanggal,
-                'deskripsi' => $request->deskripsi
-            ]);
+        Artikel::where('id_artikel', $artikel->id_artikel)->update($data);
         return redirect()->route('artikel.index')->with('update', 'Judul '.$request->judul.' berhasil diubah');
     }
 

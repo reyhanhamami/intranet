@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  @yield('metaExternal')
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -23,7 +24,7 @@
   <link rel="stylesheet" href="{{url('public/assets/dist/summernote.css')}}">
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="checkIP('https://ipv6.whatismyip.com', loadResult), checkLocal()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -33,8 +34,8 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard')}}">
-        <div class="sidebar-brand-icon mx-1">Intranet</div>
-        <div class="sidebar-brand-text"><sup>Bwa</sup></div>
+        <div class="sidebar-brand-text"><img src="{{ url('public/assets/img/bwa.png')}}" width="50"></div>
+        <!-- <div class="sidebar-brand-icon mx-1">Intranet</div> -->
       </a>
 
       <!-- Divider -->
@@ -64,11 +65,11 @@
     <div id="collapseTwo" class="collapse">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Status :</h6>
-        <a class="collapse-item" href="">Lembur</a>
-        <a class="collapse-item" href="">Cuti</a>
+        <a class="collapse-item" href="http://Zulfikar.bwa.id:88/ess/grid_overtime">Lembur</a>
+        <a class="collapse-item" href="http://zulfikar.bwa.id:88/ess/grid_Leave/grid_Leave/">Cuti</a>
         <a class="collapse-item" href="">Izin</a>
         <a class="collapse-item" href="">Pinjaman</a>
-        <a class="collapse-item" href="">Rembest kesehatan</a>
+        <a class="collapse-item" href="">Reimburse kesehatan</a>
         <a class="collapse-item" href="">Permintaan Barang</a>
         <a class="collapse-item" href="">Perjalanan dinas</a>
         <a class="collapse-item" href="">Events</a>
@@ -165,12 +166,12 @@
   </li>
 
   <!-- Tasks -->
-  <li @if($halaman == 'tasks') echo class="active nav-item" @else echo class="nav-item" @endif>
+  <!-- <li @if($halaman == 'tasks') echo class="active nav-item" @else echo class="nav-item" @endif>
     <a href="{{route('tasks.index')}}" class="collapsed nav-link">
       <i class="fas fa-fw fa-tasks"></i>
       <span>Tasks</span>
     </a>
-  </li>
+  </li> -->
 
   <!-- project -->
   <li @if($halaman == 'projects') echo class="active nav-item" @else echo class="nav-item" @endif>
@@ -259,14 +260,14 @@
             </li>
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
+                <i class="fas fa-envelope fa-fw"></i> -->
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
+                <!-- <span class="badge badge-danger badge-counter">7</span>
+              </a> -->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -312,7 +313,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -337,9 +338,9 @@
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                <a class="dropdown-item" href="{{route('changepassword')}}">
+                  <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
                 </a>
                 <div class="dropdown-divider"></div>
                 @if(Auth::user())
@@ -428,7 +429,8 @@
 
   <!-- summernote editor JavaScript  -->
   <script src="{{url('public/assets/dist/summernote.js')}}"></script>
-
+  <!-- ipaddress  -->
+  <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/95c75768/cloudflare-static/rocket-loader.min.js" data-cf-settings="e06d6829e1db31ee20f2cfa4-|49" defer=""></script>
   <!-- Page level plugins -->
   <script src="{{ url('public/assets/vendor/chart.js/Chart.min.js') }}"></script>
 

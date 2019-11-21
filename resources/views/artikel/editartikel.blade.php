@@ -23,7 +23,9 @@
                         @enderror
                     </div>
                    <div class="form-group">
-                        <label for="foto">Upload thumbnail ukuran 358x250 pixel</label>
+                        <label for="foto">Upload foto</label>
+                        <br>
+                        <img src="{{url('/public/assets/artikel/'.$artikel->foto)}}" alt="Gambar tidak ada" width="100">
                         <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror" id="foto">
                         @error('foto')
                             <div class="invalid-feedback">

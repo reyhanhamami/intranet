@@ -7,51 +7,40 @@
     @section('judul', 'Projects')
     @section('sub')
     bwa
-    <a href="#" class="btn btn-dark float-right text-white"><i class="fas fa-cogs "> Setting projects</i></a>
+    <a href="{{route('detailprojects')}}" class="btn btn-dark float-right text-white ml-2"><i class="fas fa-cogs "> Setting Projects</i></a>
+    <a href="{{route('addprojects')}}" class="btn btn-success float-right text-white"><i class="fas fa-plus "> Add projects</i></a>
     @endsection('sub')
 
     @section('konten')
         <div class="row">
             <div class="col-12">
-            <h4>Sample...</h4>
             <!-- Project Card teknologi -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects Teknologi :</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Projects Teknologi Informasi :</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">EDC Functioning <i class="small">Target September 2019</i><span class="float-right">80%</span></h4>
+               @foreach($satu as $satus)
+                  <h4 class="small font-weight-bold">{{$satus->nama_projects}} <i class="small">@if($satus->status_projects == 'Target'){{$satus->status_projects}} {{$satus->date_projects}} @else {{$satus->status_projects}} @endif</i><span class="float-right">@if($satus->status_projects == 'Completed')Completed! @else{{$satus->persentase_projects}}% @endif</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar @if($satus->status_projects == 'Target') bg-primary @elseif($satus->status_projects == 'Delayed') bg-danger @else bg-success @endif" role="progressbar" style="width: {{$satus->persentase_projects}}%" aria-valuenow="{{$satus->persentase_projects}}" aria-valuemin="0" aria-valuemax="{{$satus->persentase_projects}}"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Mobile Aps <i class="small">Target Agustus 2019</i><span class="float-right">90%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">BCP <i class="small">Delayed</i><span class="float-right">50%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">HRIS  <i class="small">completed!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Develop BWA.ID <i class="small">Target desember 2019</i><span class="float-right">10%</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                @endforeach
                 </div>
-              </div> <!-- end project teknologi -->
+              </div> 
+              <!-- end project teknologi -->
             <!-- Project Card Human Capital -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Projects Human Capital :</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Update People Development <i class="small">Target Desember 2019</i><span class="float-right">80%</span></h4>
+                @foreach($dua as $duas)
+                  <h4 class="small font-weight-bold">{{$duas->nama_projects}} <i class="small">@if($duas->status_projects == 'Target'){{$duas->status_projects}} {{$duas->date_projects}} @else {{$duas->status_projects}} @endif</i><span class="float-right">@if($duas->status_projects == 'Completed')Completed! @else{{$duas->persentase_projects}}% @endif</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar @if($duas->status_projects == 'Target') bg-primary @elseif($duas->status_projects == 'Delayed') bg-danger @else bg-success @endif" role="progressbar" style="width: {{$duas->persentase_projects}}%" aria-valuenow="{{$duas->persentase_projects}}" aria-valuemin="0" aria-valuemax="{{$duas->persentase_projects}}"></div>
                   </div>
+                @endforeach
                 </div>
               </div> <!-- end project Human Capital -->
             <!-- Project Card Program Dev -->
@@ -60,18 +49,12 @@
                   <h6 class="m-0 font-weight-bold text-primary">Projects Program Dev :</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Review SOP & workflow <i class="small">Target Juli 2019 </i><span class="float-right">Completed</span></h4>
+               @foreach($tiga as $tigas)
+                  <h4 class="small font-weight-bold">{{$tigas->nama_projects}} <i class="small">@if($tigas->status_projects == 'Target'){{$tigas->status_projects}} {{$tigas->date_projects}} @else {{$tigas->status_projects}} @endif</i><span class="float-right">@if($tigas->status_projects == 'Completed')Completed! @else{{$tigas->persentase_projects}}% @endif</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar @if($tigas->status_projects == 'Target') bg-primary @elseif($tigas->status_projects == 'Delayed') bg-danger @else bg-success @endif" role="progressbar" style="width: {{$tigas->persentase_projects}}%" aria-valuenow="{{$tigas->persentase_projects}}" aria-valuemin="0" aria-valuemax="{{$tigas->persentase_projects}}"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Mini Workshop Project Planning Workshop <i class="small">Target Juli 2019 </i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Project Management Workshop <i class="small">Target Augustus 2019 </i><span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                @endforeach
                 </div>
               </div> <!-- end project Program Dev -->
             <!-- Project Card Fundraising -->
@@ -80,30 +63,12 @@
                   <h6 class="m-0 font-weight-bold text-primary">Projects Fundraising :</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Fundraising Budget <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
+                @foreach($empat as $empats)
+                  <h4 class="small font-weight-bold">{{$empats->nama_projects}} <i class="small">@if($empats->status_projects == 'Target'){{$empats->status_projects}} {{$empats->date_projects}} @else {{$empats->status_projects}} @endif</i><span class="float-right">@if($empats->status_projects == 'Completed')Completed! @else{{$empats->persentase_projects}}% @endif</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar @if($empats->status_projects == 'Target') bg-primary @elseif($empats->status_projects == 'Delayed') bg-danger @else bg-success @endif" role="progressbar" style="width: {{$empats->persentase_projects}}%" aria-valuenow="{{$empats->persentase_projects}}" aria-valuemin="0" aria-valuemax="{{$empats->persentase_projects}}"></div>
                   </div>
-                  <h4 class="small font-weight-bold">FR Freelancer <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Upgrading Branch Managers <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Fundraising Aps <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Branch Opening SOP & Optimization <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Staff Fulfilment System (KPI) <i class="small">Delayed</i><span class="float-right">50%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                @endforeach
                 </div>
               </div> <!-- end project Fundraising -->
                 <!-- Project Card Keuangan -->
@@ -112,18 +77,12 @@
                   <h6 class="m-0 font-weight-bold text-primary">Projects Keuangan :</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Revenue Ramadhan 2019 <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
+               @foreach($lima as $limas)
+                  <h4 class="small font-weight-bold">{{$limas->nama_projects}} <i class="small">@if($limas->status_projects == 'Target'){{$limas->status_projects}} {{$limas->date_projects}} @else {{$limas->status_projects}} @endif</i><span class="float-right">@if($limas->status_projects == 'Completed')Completed! @else{{$limas->persentase_projects}}% @endif</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar @if($limas->status_projects == 'Target') bg-primary @elseif($limas->status_projects == 'Delayed') bg-danger @else bg-success @endif" role="progressbar" style="width: {{$limas->persentase_projects}}%" aria-valuenow="{{$limas->persentase_projects}}" aria-valuemin="0" aria-valuemax="{{$limas->persentase_projects}}"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Finance Audit Report <i class="small">September 2019</i><span class="float-right">84%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Finance Audit Report(2017-2018) <i class="small">Completed!!</i><span class="float-right">Completed</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                @endforeach
                 </div>
               </div> <!-- end project Keuangan -->
             </div> 

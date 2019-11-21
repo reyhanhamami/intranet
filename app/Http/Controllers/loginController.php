@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use PEAR2\Net\RouterOS;
 
 class loginController extends Controller
 {
 
-    
     // show tampilan login 
      public function getLogin(){
         return view("administrator.login");
@@ -22,7 +23,7 @@ class loginController extends Controller
     //     $hasil = Auth::attempt($user);
     //         // dd($user);
     //     if($hasil){
-    //         return redirect()->route('dashboard');
+    //         return redirect()->route('save');
     //     //    dd(Auth::login($user));
     //     } else {
     //         return redirect()->back();
@@ -32,6 +33,7 @@ class loginController extends Controller
    
     //proses login
     public function login(Request $request){
+       
         // $u = User::where('email', '=', $request->email)->first();
         $remember = $request->remember;
         $credentials = [
@@ -43,7 +45,7 @@ class loginController extends Controller
         }
         
      
-        return redirect()->back()->with('gagal', 'pswd atau Email anda salah!!')->withInput($request->only('email', 'pswd'));
+        return redirect()->back()->with('gagal', 'Password atau Email anda salah!!')->withInput($request->only('email', 'pswd'));
     }
 
     // protected function credentials(Request $request)
@@ -65,7 +67,7 @@ class loginController extends Controller
 //                     ->where('password', md5($request->password))
 //                     ->first();
 //         if ($user) {
-// dd(Auth::login($user));            // return redirect()->route('dashboard');
+// dd(Auth::login($user));            // return redirect()->route('save');
 //         } 
         
 //         // menggunakan bycript
@@ -75,7 +77,7 @@ class loginController extends Controller
 //         // ])->first();
 //         // if($data) {
 //         //     dd(Auth::attempt($data));
-//         // //    return redirect()->route('dashboard');
+//         // //    return redirect()->route('save');
 //         // } else {
 //         //     return redirect()->back();
 //         // }
@@ -83,6 +85,8 @@ class loginController extends Controller
     public function logout(){
         Auth::logout();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('login');
     }
+
+    
 }

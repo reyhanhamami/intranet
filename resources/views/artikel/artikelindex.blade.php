@@ -45,9 +45,9 @@
                         <div class="card-body">
                             <h5 class="card-title text-success">{{$artikel->judul}}</h5>
                             <p class="card-text"><small class="text-muted"><i class="fas fa-calendar"></i> {{$artikel->tanggal}}</small></p>
-                            <p class="card-text">
-                                 {{ str_limit(strip_tags($artikel->deskripsi), 150) }}
-                                <a href="#" class="btn btn-info btn-sm">Baca Selengkapnya</a>
+                            <p class="card-text" id="isicode">
+                                 {!! str_limit(strip_tags($artikel->deskripsi), 350) !!}
+                                <a href="{{$artikel->id_artikel.'/detail'}}" class="btn btn-info btn-sm">Baca Selengkapnya</a>
                             </p>
                             @if(!Auth::user())
                             @elseif(Auth::user()->name == 'admin')
@@ -87,3 +87,5 @@
               </div> -->
         @endsection('konten')
     </div>
+
+

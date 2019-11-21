@@ -36,7 +36,7 @@
                                     <th scope="col">klik untuk download foto</th>
                                     <th scope="col">Tanggal</th>
                                     @if(!Auth::user())
-                                    @elseif(Auth::user()->name == 'admin')
+                                    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                                     <th scope="col"><i class="fas fa-cogs"></i></th>
                                     @endif
                                 </tr>
@@ -53,7 +53,7 @@
                                     </td>
                                     <td>{{$person->start_date}}</td>
                                     @if(!Auth::user())
-                                    @elseif(Auth::user()->name == 'admin')
+                                    @elseif(Auth::user()->name == 'admin' or Auth::user()->login == 'Indra.Purnama')
                                     <td>
                                         <a href="{{$person->id_eventpersonal}}/geteditpersonalevent" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                                         <form action="{{$person->id_eventpersonal}}" method="post" class="d-inline">
